@@ -17,9 +17,9 @@ namespace FoodDelivery.Entities.Concrete
         public bool IsActive { get; set; }
 
         public virtual Company Company { get; set; }
-        public virtual City City { get;set; }
+        public virtual City City { get; set; }
         public virtual Region Region { get; set; }
-        public virtual List<Menu> Menus { get; set; }
-
+        public virtual List<BranchMenu> BranchMenus { get; set; }
+        public virtual List<Order> Orders { get; set; }
     }
 }

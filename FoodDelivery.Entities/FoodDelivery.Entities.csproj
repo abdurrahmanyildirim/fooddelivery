@@ -42,12 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concrete\Branch.cs" />
+    <Compile Include="Concrete\BranchMenu.cs" />
     <Compile Include="Concrete\City.cs" />
     <Compile Include="Concrete\Company.cs" />
     <Compile Include="Concrete\Menu.cs" />
     <Compile Include="Concrete\Order.cs" />
     <Compile Include="Concrete\OrderDetail.cs" />
     <Compile Include="Concrete\Region.cs" />
+    <Compile Include="Concrete\Review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Concrete\User.cs" />
     <Compile Include="Concrete\Address.cs" />

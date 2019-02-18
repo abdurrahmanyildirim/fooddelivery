@@ -54,6 +54,8 @@
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IUserDal.cs" />
     <Compile Include="Concrete\Context.cs" />
+    <Compile Include="Concrete\Mapping\BranchMenuMapping.cs" />
+    <Compile Include="Concrete\Mapping\ReviewMapping.cs" />
     <Compile Include="Concrete\Ninject\DalModule.cs" />
     <Compile Include="Concrete\Ninject\InstanceFactory.cs" />
     <Compile Include="Concrete\UserDal.cs" />

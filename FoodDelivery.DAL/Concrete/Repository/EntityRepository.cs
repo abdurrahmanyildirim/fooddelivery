@@ -15,7 +15,7 @@ namespace FoodDelivery.DAL.Concrete.Repository
     {
         public void Add(TEntity entity)
         {
-            using (TContext db=new TContext())
+            using (TContext db = new TContext())
             {
                 var addEntity = db.Entry(entity);
                 addEntity.State = EntityState.Added;
@@ -25,7 +25,7 @@ namespace FoodDelivery.DAL.Concrete.Repository
 
         public void DeleteByEntity(TEntity entity)
         {
-            using (TContext db=new TContext())
+            using (TContext db = new TContext())
             {
                 var deleteEntity = db.Entry(entity);
                 deleteEntity.State = EntityState.Deleted;
@@ -35,7 +35,7 @@ namespace FoodDelivery.DAL.Concrete.Repository
 
         public void DeleteByID(int id)
         {
-            using (TContext db=new TContext())
+            using (TContext db = new TContext())
             {
                 var deleteEntity = db.Entry(GetByID(id));
                 deleteEntity.State = EntityState.Deleted;
@@ -45,19 +45,13 @@ namespace FoodDelivery.DAL.Concrete.Repository
 
         public List<TEntity> GetAll()
         {
-            using (TContext db=new TContext())
+            using (TContext db = new TContext())
             {
                 return db.Set<TEntity>().ToList();
             }
         }
 
-        public TEntity GetByEntity(TEntity entity)
-        {
-            using (TContext db = new TContext())
-            {
-                return db.Set<TEntity>().Find(entity);
-            }
-        }
+
 
         public TEntity GetByID(int id)
         {

@@ -15,7 +15,7 @@ namespace FoodDelivery.DAL.Concrete.Context
     {
         public Context() : base("server=.;database=FoodDeliveryDb;uid=sa;pwd=123")
         {
-          
+
         }
 
         public DbSet<User> Users { get; set; }
@@ -27,6 +27,8 @@ namespace FoodDelivery.DAL.Concrete.Context
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<BranchMenu> BranchMenus { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -39,6 +41,8 @@ namespace FoodDelivery.DAL.Concrete.Context
             modelBuilder.Configurations.Add(new MenuMapping());
             modelBuilder.Configurations.Add(new OrderMapping());
             modelBuilder.Configurations.Add(new OrderDetailMapping());
+            modelBuilder.Configurations.Add(new BranchMenuMapping());
+            modelBuilder.Configurations.Add(new ReviewMapping());
 
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 

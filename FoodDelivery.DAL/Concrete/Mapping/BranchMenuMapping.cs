@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.DAL.Concrete.Mapping
 {
-    public class MenuMapping : EntityTypeConfiguration<Menu>
+    class BranchMenuMapping : EntityTypeConfiguration<BranchMenu>
     {
-        public MenuMapping()
+        public BranchMenuMapping()
         {
             HasKey(x => x.ID);
-            Property(x => x.Price).HasColumnType("money");
 
-            HasRequired(x => x.Company).WithMany(x => x.Menus).HasForeignKey(x => x.CompanyID);
+            HasRequired(x => x.Branch).WithMany(x => x.BranchMenus).HasForeignKey(x => x.BranchID);
+            HasRequired(x => x.Menu).WithMany(x => x.BranchMenus).HasForeignKey(x => x.MenuID);
         }
     }
 }

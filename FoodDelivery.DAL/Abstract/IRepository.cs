@@ -11,7 +11,6 @@ namespace FoodDelivery.DAL.Abstract.IRepository
         List<T> GetAll();
         IQueryable<T> GetEntitiesByFilter();
         T GetByID(int id);
-        T GetByEntity(T entity);
         void Add(T entity);
         void Update(T entity);
         void DeleteByEntity(T entity);
