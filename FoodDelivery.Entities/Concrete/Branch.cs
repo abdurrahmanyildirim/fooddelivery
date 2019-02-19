@@ -10,16 +10,13 @@ namespace FoodDelivery.Entities.Concrete
     {
         public int ID { get; set; }
         public int CompanyID { get; set; }
-        public int CityID { get; set; }
         public int RegionID { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public bool IsActive { get; set; }
 
         public virtual Company Company { get; set; }
-        public virtual City City { get; set; }
         public virtual Region Region { get; set; }
         public virtual List<BranchMenu> BranchMenus { get; set; }
-        public virtual List<Order> Orders { get; set; }
     }
 }

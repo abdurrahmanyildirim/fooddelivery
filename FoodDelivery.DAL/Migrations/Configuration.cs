@@ -10,6 +10,7 @@ namespace FoodDelivery.DAL.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(FoodDelivery.DAL.Concrete.Context.Context context)

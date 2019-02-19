@@ -14,7 +14,7 @@ namespace FoodDelivery.Entities.Concrete
         public string Email { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual List<Branch> Branches { get; set; }
-        public virtual List<Menu> Menus { get; set; }
+        public virtual ICollection<Branch> Branches { get; set; }
+        //public virtual ICollection<Menu> Menus { get; set; }
     }
 }

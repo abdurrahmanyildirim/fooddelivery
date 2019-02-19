@@ -11,8 +11,6 @@ namespace FoodDelivery.Entities.Concrete
         public int ID { get; set; }
         public string CityName { get; set; }
 
-        public virtual List<Address> Addresses { get; set; }
-        public virtual List<Branch> Branches { get; set; }
         public virtual List<Region> Regions { get; set; }
     }
 }

@@ -11,13 +11,11 @@ namespace FoodDelivery.Entities
     {
         public int ID { get; set; }
         public int UserID { get; set; }
-        public int CityID { get; set; }
         public int RegionID { get; set; }
         public string AddressDetail { get; set; }
         public string Title { get; set; }
 
         public virtual User User { get; set; }
-        public virtual City City { get; set; }
         public virtual Region Region { get; set; }
         public virtual List<Order> Orders { get; set; }
     }

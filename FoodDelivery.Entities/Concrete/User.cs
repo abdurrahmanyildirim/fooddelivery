@@ -17,6 +17,6 @@ namespace FoodDelivery.Entities
         public string Phone { get; set; }
 
         public virtual List<Address> Addresses { get; set; }
-        public virtual List<Order> Orders { get; set; }
+      //  public virtual List<Order> Orders { get; set; }
     }
 }

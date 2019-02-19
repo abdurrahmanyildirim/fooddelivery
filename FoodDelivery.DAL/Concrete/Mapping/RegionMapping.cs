@@ -14,7 +14,7 @@ namespace FoodDelivery.DAL.Concrete.Mapping
         {
             HasKey(x => x.ID);
 
-            HasRequired(x => x.City).WithMany(x => x.Regions).HasForeignKey(x => x.CityID).WillCascadeOnDelete(false);
+            HasRequired(x => x.City).WithMany(x => x.Regions).HasForeignKey(x => x.CityID);
         }
     }
 }
