@@ -16,9 +16,9 @@ namespace FoodDelivery.DAL.Concrete.Mapping
             Property(x => x.TotalPrice).HasColumnType("money");
             Property(x => x.OrderDate).HasColumnType("datetime2");
 
-            HasRequired(x => x.User).WithMany(x => x.Orders).HasForeignKey(x => x.UserID);
+            HasRequired(x => x.User).WithMany(x => x.Orders).HasForeignKey(x => x.UserID).WillCascadeOnDelete(false);
             HasRequired(x => x.Address).WithMany(x => x.Orders).HasForeignKey(x => x.AddressID);
-            HasRequired(x => x.Branch).WithMany(x => x.Orders).HasForeignKey(x => x.BranchID);
+            HasRequired(x => x.Branch).WithMany(x => x.Orders).HasForeignKey(x => x.BranchID).WillCascadeOnDelete(false);
         }
     }
 }

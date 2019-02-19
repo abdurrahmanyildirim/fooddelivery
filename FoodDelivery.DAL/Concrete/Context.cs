@@ -44,8 +44,6 @@ namespace FoodDelivery.DAL.Concrete.Context
             modelBuilder.Configurations.Add(new BranchMenuMapping());
             modelBuilder.Configurations.Add(new ReviewMapping());
 
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-
             base.OnModelCreating(modelBuilder);
         }
     }
