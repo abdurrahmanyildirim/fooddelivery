@@ -13,7 +13,11 @@ namespace FoodDelivery.DAL.Concrete.Context
 {
     public class Context : DbContext
     {
-        public Context() : base("server=.;database=FoodDeliveryDb;uid=sa;pwd=123")
+        //public Context() : base("server=.;database=FoodDeliveryDb;uid=sa;pwd=123")
+        //{
+
+        //}
+        public Context() : base(@"server=ADEM\EXPRESS;database=FoodDeliveryDb;uid=sa;pwd=123")
         {
 
         }
