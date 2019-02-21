@@ -17,10 +17,11 @@ namespace FoodDelivery.DAL.Concrete
         //{
 
         //}
-        public Context() : base(@"server=ADEM\EXPRESS;database=FoodDeliveryDb;uid=sa;pwd=123")
-        {
+        //public Context() : base(@"server=ADEM\EXPRESS;database=FoodDeliveryDb;uid=sa;pwd=123")
+        //{
+        //}
 
-        }
+        public Context() : base(@"server = (LocalDb)\MsSqlLocalDb; database = FoodDelivery; Trusted_Connection=true") { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }
