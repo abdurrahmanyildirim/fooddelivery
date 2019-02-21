@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodDelivery.DAL.Concrete.Context
+namespace FoodDelivery.DAL.Concrete
 {
     public class Context : DbContext
     {

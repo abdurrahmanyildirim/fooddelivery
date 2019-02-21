@@ -14,8 +14,6 @@ namespace FoodDelivery.Entities.Concrete
         public decimal Price { get; set; }
 
         public virtual ICollection<BranchMenu> BranchMenus { get; set; }
-   
-      //  public virtual Company Company { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
     }
