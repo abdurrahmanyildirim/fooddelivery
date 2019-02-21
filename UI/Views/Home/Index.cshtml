@@ -1,13 +1,43 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Ana Sayfa";
-    Layout = "~/Views/_LayoutPage.cshtml";
+    ViewBag.IsAdvertisement = true;
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
-<div class="panel panel-default">
-    <div class="panel-body">
+    <div class="row" style="padding-bottom:20px;">
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+            <h1 style="color:red;">FoodDelivery'e Hoş Geldiniz!</h1><br />
+            <h4>FoodDelivery.com, sizin gibi karnı acıkmış müşterilere, hızlı ve en düşük fiyat garantili olarak nefis yemekler servis etmeye hazır, dünyanın dört bir yanındaki restoranlardan oluşan bir ağdır.</h4>
+        </div>
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 text-right"><img style="width:75%" src="~/Images/banner.gif" alt="FoodDelivery" /></div>
+    </div>
+     
 
+     <div class="panel panel-default">
+         <div class="panel-body">
+             <div class="row">
+                 <div class="col-md-9 col-lg-9 col-xs-12">
+                     <input type="text" name="YemekAra" value="" class="form-control input-lg" placeholder="Yemek ara" />
+                 </div>
+                 <div class="col-xs-12 col-md-3 col-lg-3">
+                     <input style="font-size:large;" type="submit" value="Ara" class="btn input-lg btn-primary form-control" />
+                 </div>
+             </div>
+         </div>
+     </div>
+
+<br />
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h2>Kredi kartınız bizi hiç ilgilendirmiyor!</h2>
+    </div>
+    <div class="panel-body">
+        <p>
+            Siparişlerinizi en doğru, en hızlı ve en kolay şekilde alıyor, ilgili restorana eksiksiz ve anında iletiyoruz. Kredi kartı, güvenlik sorunu yok. Siparişinizi hiçbir ekstra ücret ödemeden verin, 10-45 dakika (restoranın ortalama gönderim süresi) içerisinde yemeğiniz elinizde olsun.
+        </p>
     </div>
 </div>
+
+
 
 
