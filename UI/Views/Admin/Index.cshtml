@@ -1,0 +1,29 @@
+﻿@model IEnumerable<FoodDelivery.Entities.Concrete.CompanyApply>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Logo</th>
+            <th>Şirket Adı</th>
+            <th>Açıklama</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (var item in Model)
+            {
+
+                <tr>
+                    <td><img src="@item.PhotoPath" alt="@item.CompanyName" /></td>
+                    <td>@item.CompanyName</td>
+                    <td>@item.Description</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
