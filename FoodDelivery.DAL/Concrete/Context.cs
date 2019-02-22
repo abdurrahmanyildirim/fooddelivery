@@ -34,6 +34,9 @@ namespace FoodDelivery.DAL.Concrete
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<BranchMenu> BranchMenus { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Manager> Managers { get; set; }
+        public DbSet<CompanyApply> CompanyApplies { get; set; }
+        public DbSet<ContactForm> ContactForms { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

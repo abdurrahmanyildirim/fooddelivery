@@ -12,6 +12,7 @@ namespace FoodDelivery.Entities.Concrete
         public string MenuName { get; set; }
         public string MenuDetail { get; set; }
         public decimal Price { get; set; }
+        public string PhotoPath { get; set; }
 
         public virtual ICollection<BranchMenu> BranchMenus { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

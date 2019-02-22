@@ -45,6 +45,9 @@
     <Compile Include="Concrete\BranchMenu.cs" />
     <Compile Include="Concrete\City.cs" />
     <Compile Include="Concrete\Company.cs" />
+    <Compile Include="Concrete\CompanyApply.cs" />
+    <Compile Include="Concrete\ContactForm.cs" />
+    <Compile Include="Concrete\Manager.cs" />
     <Compile Include="Concrete\Menu.cs" />
     <Compile Include="Concrete\Order.cs" />
     <Compile Include="Concrete\OrderDetail.cs" />

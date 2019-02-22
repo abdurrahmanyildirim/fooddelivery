@@ -15,6 +15,7 @@ namespace FoodDelivery.Entities
         public string Password { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public string Cookie { get; set; }
 
         public virtual List<Address> Addresses { get; set; }
     }

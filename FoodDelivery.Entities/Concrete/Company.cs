@@ -13,6 +13,8 @@ namespace FoodDelivery.Entities.Concrete
         public string Password { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }
+        public string PhotoPath { get; set; }
+        public string Cookie { get; set; }
 
         public virtual ICollection<Branch> Branches { get; set; }
         //public virtual ICollection<Menu> Menus { get; set; }
