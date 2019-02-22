@@ -1,0 +1,30 @@
+﻿@model IEnumerable<FoodDelivery.Entities.Concrete.Branch>
+@{
+    ViewBag.Title = "Branches";
+    Layout = "~/Views/Shared/_CompanyLayoutPage.cshtml";
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Bölge</th>
+            <th>Adres</th>
+            <th>Telefon</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ 
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Region.City</td>
+                    <td>@item.Address</td>
+                    <td>@item.Phone</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<br />
+<div class="right">@Html.ActionLink("+ Şube Ekle","AddBranch","Company", new {@class="btn btn-primary" }) </div>
+

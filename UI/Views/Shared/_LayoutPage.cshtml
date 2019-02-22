@@ -24,9 +24,9 @@
             </div>
             <div class="collapse navbar-collapse navbar-right" id="navbar">
                 <ul class="nav navbar-nav">
-                    <li ><a href="~/Index">Ana Sayfa</a></li>
-                    <li ><a href="~/About">Hakkımızda</a></li>
-                    <li ><a href="~/Contact">Bize Ulaşın</a></li>
+                    <li><a href="~/Index">Ana Sayfa</a></li>
+                    <li><a href="~/About">Hakkımızda</a></li>
+                    <li><a href="~/Contact">Bize Ulaşın</a></li>
                 </ul>
             </div>
         </div>
@@ -35,11 +35,11 @@
         <div class="row" style="margin-top:80px;">
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                 @Html.Partial("_UserPanel")
+                @RenderSection("reklamAlani",false)
             </div>
+
             <div class="content col-xs-12 col-sm-9 col-md-9 col-md-9">
-
                 @RenderBody()
-
             </div>
         </div>
     </div>
@@ -71,7 +71,7 @@
             </div>
         </div>
     </footer>
-   
+
     <script src="~/Scripts/jquery-1.9.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>

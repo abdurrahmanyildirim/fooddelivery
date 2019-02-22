@@ -1,0 +1,29 @@
+﻿@model IEnumerable<FoodDelivery.Entities.Concrete.Menu>
+@{
+    ViewBag.Title = "Menus";
+    Layout = "~/Views/Shared/_CompanyLayoutPage.cshtml";
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>İsim</th>
+            <th>Açıklama</th>
+            <th>Fiyat</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ 
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MenuName</td>
+                    <td>@item.MenuDetail</td>
+                    <td>@item.Price TL</td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+
