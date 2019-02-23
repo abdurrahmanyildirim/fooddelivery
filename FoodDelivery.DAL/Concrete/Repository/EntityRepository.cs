@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -61,12 +62,13 @@ namespace FoodDelivery.DAL.Concrete.Repository
             }
         }
 
-        public IQueryable<TEntity> GetEntitiesByFilter()
+        public IQueryable<TEntity> GetEntitiesByFilter(Expression<Func<TEntity, bool>> filter)
         {
-            using (TContext db = new TContext())
-            {
-                return db.Set<TEntity>();
-            }
+            //using (TContext db = new TContext())
+            //{
+            TContext db = new TContext();
+            return db.Set<TEntity>().Where(filter);
+            //}
         }
 
         public void Update(TEntity entity)

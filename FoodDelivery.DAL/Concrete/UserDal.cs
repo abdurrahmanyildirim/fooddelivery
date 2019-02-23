@@ -18,7 +18,7 @@ namespace FoodDelivery.DAL.Concrete
         {
             //EfRepository'de oluşturduğumuz GetAEntitiesByFilter() metodunu aşağıdaki gibi çağırıp bunu özel sorgularda kullanabiliriz.
             
-            return GetEntitiesByFilter().Where(x => x.FirstName.StartsWith(filter));
+            return GetEntitiesByFilter(x => x.FirstName.StartsWith(filter));
         }
 
         //public void hasjd()

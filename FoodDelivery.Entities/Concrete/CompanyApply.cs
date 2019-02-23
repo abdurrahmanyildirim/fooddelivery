@@ -12,6 +12,6 @@ namespace FoodDelivery.Entities.Concrete
         public string CompanyName { get; set; }
         public string Description { get; set; }
         public string PhotoPath { get; set; }
-        
+        public bool IsActive { get; set; }
     }
 }

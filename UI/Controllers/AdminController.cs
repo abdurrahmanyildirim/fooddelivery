@@ -1,4 +1,7 @@
-﻿using FoodDelivery.DAL.Concrete;
+﻿using FoodDelivery.DAL.Abstract;
+using FoodDelivery.DAL.Concrete;
+using FoodDelivery.DAL.Concrete.Ninject;
+using FoodDelivery.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +12,13 @@ namespace UI.Controllers
 {
     public class AdminController : Controller
     {
+        ICompanyApplyDal _companyApplyDal;
         // GET: Admin
         public ActionResult Index()
         {
-           
-            
-            Context db = new Context();
-            
+            _companyApplyDal = InstanceFactory.GetInstance<ICompanyApplyDal>();
 
-            return View(db.CompanyApplies.ToList());
+            return View(_companyApplyDal.GetActiveApplies().ToList());
         }
 
         public ActionResult Add()
