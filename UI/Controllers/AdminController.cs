@@ -14,15 +14,38 @@ namespace UI.Controllers
     {
         ICompanyApplyDal _companyApplyDal;
         // GET: Admin
-        public ActionResult Index()
+
+        public AdminController()
         {
             _companyApplyDal = InstanceFactory.GetInstance<ICompanyApplyDal>();
-            return View(_companyApplyDal.GetActiveApplies().ToList());
         }
 
-        public ActionResult Add()
+        public ActionResult Index()
         {
-            return View();
+            return View(_companyApplyDal.GetApplies().ToList());
+        }
+
+        public ActionResult Add(int id)
+        {
+            if (_companyApplyDal.GetByID(id) != null)
+            {
+                CompanyApply companyApply = _companyApplyDal.GetByID(id);
+                ICompanyDal companyDal = InstanceFactory.GetInstance<ICompanyDal>();
+                Company company = new Company();
+                company.CompanyName = companyApply.CompanyName;
+                company.Email = companyApply.EmailAddress;
+                company.Password = companyApply.Password;
+                company.PhotoPath = companyApply.PhotoPath;
+                company.IsActive = true;
+                companyDal.Add(company);
+                companyApply.IsActive = false;
+                _companyApplyDal.Update(companyApply);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Error404", "Error");
+            }
         }
 
     }

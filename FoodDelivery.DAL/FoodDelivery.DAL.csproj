@@ -52,10 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ICompanyDal.cs" />
     <Compile Include="Abstract\ICompanyApplyDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IUserDal.cs" />
     <Compile Include="Concrete\CompanyApplyDal.cs" />
+    <Compile Include="Concrete\CompanyDal.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Mapping\BranchMenuMapping.cs" />
     <Compile Include="Concrete\Mapping\ReviewMapping.cs" />

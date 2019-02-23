@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="margin-top:200px;">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3>@RenderSection("hataBasligi")</h3>
+                </div>
+                <div class="panel-body text-center">
+                    <h1><span class="glyphicon glyphicon-alert"></span> <br />@RenderSection("hataMesaji")</h1><br />
+                    <br/>
+                    @Html.ActionLink("Ana Sayfaya Dön", "Index", "Home", null, new { @class = "btn btn-primary btn-lg" })
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

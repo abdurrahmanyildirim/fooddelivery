@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.DAL.Abstract
 {
-   public interface ICompanyApplyDal:IRepository<CompanyApply>
+    public interface ICompanyDal : IRepository<Company>
     {
-        ICollection<CompanyApply> GetApplies();
     }
 }

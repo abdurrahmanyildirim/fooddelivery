@@ -9,11 +9,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.DAL.Concrete
 {
-    public class CompanyApplyDal : EntityRepository<CompanyApply, Context>,ICompanyApplyDal
+    public class CompanyDal : EntityRepository<Company, Context>, ICompanyDal
     {
-        public ICollection<CompanyApply> GetApplies()
-        {
-            return GetAll();
-        }
     }
 }

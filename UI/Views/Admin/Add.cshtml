@@ -1,8 +1,27 @@
-﻿
+﻿@model FoodDelivery.Entities.Concrete.CompanyApply
 @{
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+
+    if (Model == null)
+    {
+        return;
+    }
+
 }
 
-<h2>Add</h2>
+<div class="text-center">
+    <h4>@Model.CompanyName şirketini ekliyorsunuz</h4>
+    <br />
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <label>Kullanıcı adı: </label>
+            <input type="text" name="Kadi" value="" class="form-control" placeholder="E-Posta adresi " />
+            <br />
+            <label>Şifre:</label>
+        </div>
+    </div>
+
+</div>
+
 

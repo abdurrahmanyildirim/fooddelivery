@@ -17,6 +17,7 @@ namespace FoodDelivery.DAL.Concrete.Ninject
             //Bütün yapı kurulduktan sonra burada Bind olan yere göndereceğimiz interface'i yazıyoruz ve To kısmına ise bize üretmesini istediğimiz nesneyi yazıyoruz. Daha sonra eğer isterseniz Sonuna da benim aşağıda yazdığım gibi singleton eklerseniz Singleton dizayn uygulanmış oluyor. Devamını instance factory'de yazacağım.
             Bind<IUserDal>().To<UserDal>().InSingletonScope();
             Bind<ICompanyApplyDal>().To<CompanyApplyDal>().InSingletonScope();
+            Bind<ICompanyDal>().To<CompanyDal>().InSingletonScope();
         }
     }
 }
