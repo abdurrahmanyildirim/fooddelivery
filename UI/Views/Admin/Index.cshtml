@@ -25,16 +25,16 @@
                         @{
                             if (item.IsActive)
                             {
-                                Html.ActionLink("Ekle", "Add", "Admin", new { @id = item.ID }, new { @class = "form-control btn btn-success" });
+                                @Html.ActionLink("Ekle", "Add", "Admin", new { @id = item.ID }, new { @class = "form-control btn btn-success" });
                             }
                             else
                             {
                                 <span class="label-success">Eklendi</span>
                             }
                         }
-                </td>
-            </tr>
-                        }
+                    </td>
+                </tr>
+            }
         }
 
     </tbody>

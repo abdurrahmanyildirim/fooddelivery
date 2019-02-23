@@ -22,7 +22,7 @@ namespace UI.Controllers
 
         public ActionResult Index()
         {
-            return View(_companyApplyDal.GetApplies().ToList());
+            return View(_companyApplyDal.GetAll());
         }
 
         public ActionResult Add(int id)

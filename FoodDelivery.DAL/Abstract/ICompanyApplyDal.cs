@@ -10,6 +10,6 @@ namespace FoodDelivery.DAL.Abstract
 {
    public interface ICompanyApplyDal:IRepository<CompanyApply>
     {
-        ICollection<CompanyApply> GetApplies();
+        IQueryable<CompanyApply> GetAppliesByActive();
     }
 }

@@ -20,12 +20,10 @@ namespace UI.Controllers
         }
         public ActionResult Branches()
         {
-
             return View(db.Branches.ToList());
         }
         public ActionResult Menus()
         {
-
             return View(db.Menus.ToList());
         }
         public ActionResult AddBranch()

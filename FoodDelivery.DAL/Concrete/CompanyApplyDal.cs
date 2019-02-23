@@ -11,9 +11,9 @@ namespace FoodDelivery.DAL.Concrete
 {
     public class CompanyApplyDal : EntityRepository<CompanyApply, Context>,ICompanyApplyDal
     {
-        public ICollection<CompanyApply> GetApplies()
+        public IQueryable<CompanyApply> GetAppliesByActive()
         {
-            return GetAll();
+            return GetEntitiesByFilter(x=>x.IsActive==true);
         }
     }
 }
