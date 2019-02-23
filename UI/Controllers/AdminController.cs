@@ -17,7 +17,6 @@ namespace UI.Controllers
         public ActionResult Index()
         {
             _companyApplyDal = InstanceFactory.GetInstance<ICompanyApplyDal>();
-
             return View(_companyApplyDal.GetActiveApplies().ToList());
         }
 

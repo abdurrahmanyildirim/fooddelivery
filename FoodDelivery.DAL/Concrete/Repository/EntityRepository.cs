@@ -64,11 +64,8 @@ namespace FoodDelivery.DAL.Concrete.Repository
 
         public IQueryable<TEntity> GetEntitiesByFilter(Expression<Func<TEntity, bool>> filter)
         {
-            //using (TContext db = new TContext())
-            //{
             TContext db = new TContext();
             return db.Set<TEntity>().Where(filter);
-            //}
         }
 
         public void Update(TEntity entity)
