@@ -13,8 +13,11 @@ namespace FoodDelivery.DAL.Concrete.Ninject
         public static T GetInstance<T>()
         {
             //new StandardKernel class'ına az önce yazdığımız DalModule class'ını gönderiyoruz, StandardKernel class'ı bizim kurduğumuz mantığa göre gidip DalModule içerisinden bir Instance alıyor bunu da bize o instance türünden döndürüyor.
-            var kernel = new StandardKernel(new DalModule());
-            return kernel.Get<T>();
+            using (var kernel = new StandardKernel(new DalModule()))
+            {
+                return kernel.Get<T>();
+            } 
+            
         } 
     }
 }

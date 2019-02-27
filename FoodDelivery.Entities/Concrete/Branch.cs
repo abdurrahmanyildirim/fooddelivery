@@ -17,6 +17,6 @@ namespace FoodDelivery.Entities.Concrete
 
         public virtual Company Company { get; set; }
         public virtual Region Region { get; set; }
-        public virtual List<BranchMenu> BranchMenus { get; set; }
+      
     }
 }

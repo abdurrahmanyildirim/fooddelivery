@@ -15,7 +15,7 @@ namespace FoodDelivery.DAL.Concrete.Mapping
             HasKey(x => x.ID);
             Property(x => x.Price).HasColumnType("money");
 
-
+            HasRequired(x => x.Company).WithMany(x => x.Menus).HasForeignKey(x => x.CompanyID);
         }
     }
 }

@@ -17,6 +17,6 @@ namespace FoodDelivery.Entities.Concrete
         public string Cookie { get; set; }
 
         public virtual ICollection<Branch> Branches { get; set; }
-        //public virtual ICollection<Menu> Menus { get; set; }
+        public virtual ICollection<Menu> Menus { get; set; }
     }
 }

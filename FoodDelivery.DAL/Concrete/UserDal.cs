@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace FoodDelivery.DAL.Concrete
 {
@@ -21,10 +22,11 @@ namespace FoodDelivery.DAL.Concrete
             return GetEntitiesByFilter(x => x.FirstName.StartsWith(filter));
         }
 
-        //public void hasjd()
-        //{
-        //    Context context = new Context();
-        //    context.Users.Where(x => x.Addresses.FirstOrDefault(p => p.UserID == x.ID).Region.Branches.FirstOrDefault(a=>a.ID==a.Region.ID).Phone=="51413");
-        //}
+        public void hasjd()
+        {
+            Context context = new Context();
+            //context.Users.Where(x => x.Addresses.FirstOrDefault(p => p.UserID == x.ID).Region.Branches.FirstOrDefault(a => a.ID == a.Region.ID).Phone == "51413");
+            //context.Users.Where(x => x.Addresses.FirstOrDefault(p => p.ID == x.ID).Region.City.CityName == "Ali");
+        }
     }
 }
