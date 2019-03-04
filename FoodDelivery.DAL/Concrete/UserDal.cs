@@ -15,7 +15,7 @@ namespace FoodDelivery.DAL.Concrete
     public class UserDal : EntityRepository<User, Context>, IUserDal
     {
         //Dal katmanında ortak olmayan metotlar yazdığınız zaman önce interface'e yazın daha sonra oradan İmplement edin.  
-        public IQueryable<User> GetNameByFilter(string filter)
+        public ICollection<User> GetNameByFilter(string filter)
         {
             //EfRepository'de oluşturduğumuz GetAEntitiesByFilter() metodunu aşağıdaki gibi çağırıp bunu özel sorgularda kullanabiliriz.
             

@@ -24,9 +24,9 @@ namespace UI.Controllers
         {
             string userName = frm["email"];
             string password = frm["password"];
-            if (_userDal.GetUserByLogin(userName, password) != null)
-            {
                 User myUser = _userDal.GetUserByLogin(userName, password);
+            if (myUser != null)
+            {
                 string cerezKodu = Guid.NewGuid().ToString("n").Substring(0, 12);
                 HttpCookie myCookie = new HttpCookie("user", cerezKodu);
                 myCookie.Expires = DateTime.Now.AddDays(5);
