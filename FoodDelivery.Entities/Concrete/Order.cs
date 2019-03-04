@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodDelivery.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.Entities.Concrete
 {
-    public class Order
+    public class Order : IEntity
     {
         public int ID { get; set; }
         public int AddressID { get; set; }

@@ -1,4 +1,5 @@
 ﻿using FoodDelivery.DAL.Abstract.IRepository;
+using FoodDelivery.Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,7 +12,7 @@ namespace FoodDelivery.DAL.Concrete.Repository
 {
     //Repository de bağlantı için de generic kullandık. Burada Where TContext:DbContext kısıtını kullanmazsanız, program TContext'in bağlantı nesnesi olduğunu algılamaz hata verir. Bu kısıtlamalar bir nevi verilen Generic ifadenin ne tipte bir generic ifade olduğunu programa söyler, program da buna göre hareket eder. 
     public class EntityRepository<TEntity, TContext> : IRepository<TEntity>
-        where TEntity : class, new()
+        where TEntity : class, IEntity, new()
         where TContext : DbContext, new()
     {
         public void Add(TEntity entity)

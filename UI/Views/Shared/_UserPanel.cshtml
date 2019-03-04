@@ -3,15 +3,23 @@
         <h4>Giriş Yap</h4>
     </div>
     <div class="panel-body">
-        <div class="form-group">
-            <label>E-Posta adresiniz: </label><br />
-            <input type="email" class="form-control" required placeholder="E-Posta adresiniz" />
-        </div>
-        <div class="form-group">
-            <label>Şifreniz: </label><br />
-            <input type="password" class="form-control" required placeholder="Şifreniz" />
-        </div>
-        <input type="submit" class="form-control btn btn-success" value="Giriş Yap" />
+        @{
+            using (Html.BeginForm("Login", "Login", FormMethod.Post))
+            {
+
+                <div class="form-group">
+                    <label>E-Posta adresiniz: </label><br />
+                    <input type="email" name="email" class="form-control" required placeholder="E-Posta adresiniz" />
+                </div>
+                <div class="form-group">
+                    <label>Şifreniz: </label><br />
+                    <input type="password" name="password" class="form-control" required placeholder="Şifreniz" />
+                </div>
+                <input type="submit" class="form-control btn btn-success" value="Giriş Yap" />
+
+            }
+        }
+
 
     </div>
 </div>

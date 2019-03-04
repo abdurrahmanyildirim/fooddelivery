@@ -22,11 +22,9 @@ namespace FoodDelivery.DAL.Concrete
             return GetEntitiesByFilter(x => x.FirstName.StartsWith(filter));
         }
 
-        public void hasjd()
+        public User GetUserByLogin(string userName, string password)
         {
-            Context context = new Context();
-            //context.Users.Where(x => x.Addresses.FirstOrDefault(p => p.UserID == x.ID).Region.Branches.FirstOrDefault(a => a.ID == a.Region.ID).Phone == "51413");
-            //context.Users.Where(x => x.Addresses.FirstOrDefault(p => p.ID == x.ID).Region.City.CityName == "Ali");
+            return GetEntitiesByFilter(x => x.Email == userName && x.Password == password).FirstOrDefault();
         }
     }
 }

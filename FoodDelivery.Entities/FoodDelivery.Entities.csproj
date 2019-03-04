@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IEntity.cs" />
     <Compile Include="Concrete\Branch.cs" />
     <Compile Include="Concrete\City.cs" />
     <Compile Include="Concrete\Company.cs" />
@@ -57,8 +58,6 @@
     <Compile Include="Concrete\User.cs" />
     <Compile Include="Concrete\Address.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Abstract\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
