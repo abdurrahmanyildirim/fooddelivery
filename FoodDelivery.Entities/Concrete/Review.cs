@@ -13,7 +13,9 @@ namespace FoodDelivery.Entities.Concrete
         public int Point { get; set; }
         public string Comment { get; set; }
 
-        public virtual Order Order { get; set; }
+        public int MenuID { get; set; }
+
+        public virtual Menu Menu { get; set; }
         
     }
 }

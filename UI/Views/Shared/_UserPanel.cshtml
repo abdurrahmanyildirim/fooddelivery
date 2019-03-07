@@ -1,26 +1,40 @@
 ﻿<div class="panel panel-primary">
     <div class="panel-heading">
-        <h4>Giriş Yap</h4>
-    </div>
-    <div class="panel-body">
         @{
-            using (Html.BeginForm("Login", "Login", FormMethod.Post))
+            if (Request.Cookies["user"] != null)
             {
-
-                <div class="form-group">
-                    <label>E-Posta adresiniz: </label><br />
-                    <input type="email" name="email" class="form-control" required placeholder="E-Posta adresiniz" />
-                </div>
-                <div class="form-group">
-                    <label>Şifreniz: </label><br />
-                    <input type="password" name="password" class="form-control" required placeholder="Şifreniz" />
-                </div>
-                <input type="submit" class="form-control btn btn-success" value="Giriş Yap" />
-
+                <h4>Hesabım</h4>
+            }
+            else
+            {
+                <h4>Giriş Yap</h4>
             }
         }
 
+    </div>
+    <div class="panel-body">
+        @{
+            if (HttpContext.Current.Request.Cookies["user"] != null)
+            {
+                Html.RenderAction("_UserLoginPanel", "Login");
+            }
+            else
+            {
+                using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                {
 
+                    <div class="form-group">
+                        <label>E-Posta adresiniz: </label><br />
+                        <input type="email" name="email" class="form-control" required placeholder="E-Posta adresiniz" />
+                    </div>
+                    <div class="form-group">
+                        <label>Şifreniz: </label><br />
+                        <input type="password" name="password" class="form-control" required placeholder="Şifreniz" />
+                    </div>
+                    <input type="submit" class="form-control btn btn-success" value="Giriş Yap" />
+                }
+            }
+        }
     </div>
 </div>
 

@@ -13,6 +13,7 @@ namespace FoodDelivery.DAL.Concrete.Mapping
         public OrderDetailMapping()
         {
             HasKey(x => x.ID);
+            Property(z => z.TotalAmount).HasColumnType("money");
             HasRequired(x => x.Menu).WithMany(x => x.OrderDetails).HasForeignKey(x => x.MenuID);
             HasRequired(x => x.Order).WithMany(x => x.OrderDetails).HasForeignKey(x => x.OrderID);
         }

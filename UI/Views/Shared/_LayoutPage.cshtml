@@ -23,19 +23,28 @@
                 </a>
             </div>
             <div class="collapse navbar-collapse navbar-right" id="navbar">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Ana Sayfa", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Hakkımızda", "About", "Home")</li>
-                    <li>@Html.ActionLink("Bize Ulaşın", "Contact", "Home")</li>
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sepetim <span class="badge">0</span></a>
-                        <ul class="dropdown-menu">
-                            <li><a>Sepetiniz boş</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a>Toplam Tutar: <b>0 TL</b></a></li>
+                @{
+                    if (Response.Cookies["user"] != null)
+                    {
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-9 col-lg-9 col-xs-12">
+                                <input type="text" name="YemekAra" value="" class="form-control" placeholder="Yemek ara" />
+                            </div>
+                            <div class="col-xs-12 col-md-3 col-lg-3">
+                                <input type="submit" value="Ara" class="btn btn-primary form-control" />
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Ana Sayfa", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Hakkımızda", "About", "Home")</li>
+                            <li>@Html.ActionLink("Bize Ulaşın", "Contact", "Home")</li>
                         </ul>
-                    </li>
-                </ul>
+                    }
+
+                }
             </div>
         </div>
     </nav>

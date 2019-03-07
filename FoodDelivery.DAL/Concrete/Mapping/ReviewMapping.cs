@@ -14,7 +14,7 @@ namespace FoodDelivery.DAL.Concrete.Mapping
         {
             HasKey(x => x.ID);
 
-            HasRequired(x => x.Order).WithRequiredPrincipal(x => x.Review);
+            HasRequired(x => x.Menu).WithMany(x => x.Reviews).HasForeignKey(x => x.MenuID);
             
         }
     }

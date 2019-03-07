@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodDelivery.Entities
+namespace FoodDelivery.Entities.Concrete
 {
     public class User : IEntity
     {

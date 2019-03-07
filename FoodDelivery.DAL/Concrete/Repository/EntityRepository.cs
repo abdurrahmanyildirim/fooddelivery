@@ -65,10 +65,10 @@ namespace FoodDelivery.DAL.Concrete.Repository
 
         public ICollection<TEntity> GetEntitiesByFilter(Expression<Func<TEntity, bool>> filter)
         {
-            using (TContext db = new TContext())
-            {
-
-            return db.Set<TEntity>().Where(filter).ToList();
+              using (TContext db = new TContext())
+                {
+            
+                return db.Set<TEntity>().Where(filter).ToList();
             }
             
         }

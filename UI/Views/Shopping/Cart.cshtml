@@ -1,0 +1,37 @@
+﻿@model IEnumerable<FoodDelivery.Entities.Concrete.OrderDetail>
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="panel panel-primary" >
+    <div class="panel-heading">
+        Sepetiniz
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Çıkar</th>
+                    <th>Menü Adı</th>
+                    <th>Adedi</th>
+                    <th>Fiyatı</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ 
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>ç</td>
+                            <td>@item.Menu.MenuName</td>
+                            <td>@item.Quantity</td>
+                            <td>@string.Format("{0:C0}", item.Menu.Price*item.Quantity)</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

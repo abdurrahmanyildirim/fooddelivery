@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.DAL.Abstract
 {
-    public interface IUserDal:IRepository<User>
+    public interface IOrderDetailDal: IRepository<OrderDetail>
     {
-        ICollection<User> GetNameByFilter(string filter);
-
-        User GetUserByLogin(string userName, string password);
-
-        User GetUserByCookie(string cookie);
+        ICollection<OrderDetail> GetCartByCookie(string cookie);
     }
 }

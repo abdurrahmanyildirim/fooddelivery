@@ -1,6 +1,6 @@
 ﻿using FoodDelivery.DAL.Abstract;
 using FoodDelivery.DAL.Concrete.Ninject;
-using FoodDelivery.Entities;
+using FoodDelivery.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +13,10 @@ namespace UI.Controllers
     {
         IUserDal _userDal;
 
+
         public LoginController()
         {
             _userDal = InstanceFactory.GetInstance<IUserDal>();
-
         }
 
         [HttpPost]
@@ -24,13 +24,16 @@ namespace UI.Controllers
         {
             string userName = frm["email"];
             string password = frm["password"];
-                User myUser = _userDal.GetUserByLogin(userName, password);
+            User myUser = _userDal.GetUserByLogin(userName, password);
             if (myUser != null)
             {
                 string cerezKodu = Guid.NewGuid().ToString("n").Substring(0, 12);
+
                 HttpCookie myCookie = new HttpCookie("user", cerezKodu);
                 myCookie.Expires = DateTime.Now.AddDays(5);
                 Response.Cookies.Add(myCookie);
+
+
                 myUser.Cookie = cerezKodu;
                 _userDal.Update(myUser);
                 return RedirectToAction("Index", "Home");
@@ -40,5 +43,26 @@ namespace UI.Controllers
                 return RedirectToAction("About", "Home");
             }
         }
+
+        public PartialViewResult _UserLoginPanel()
+        {
+            if (HttpContext.Request.Cookies["user"] != null)
+            {
+                string cookie = Request.Cookies["user"].Value;
+                return PartialView("~/Views/Login/_UserLoginPanel.cshtml", _userDal.GetUserByCookie(cookie));
+            }
+            else
+            {
+                return PartialView();
+            }
+        }
+
+        public PartialViewResult _SepetSection()
+        {
+
+            return PartialView("~/Views/Login/_UserLoginPanel.cshtml");
+        }
+
+
     }
 }

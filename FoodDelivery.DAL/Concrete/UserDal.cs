@@ -22,9 +22,20 @@ namespace FoodDelivery.DAL.Concrete
             return GetEntitiesByFilter(x => x.FirstName.StartsWith(filter));
         }
 
+        public User GetUserByCookie(string cookie)
+        {
+            return GetEntitiesByFilter(x => x.Cookie == cookie).FirstOrDefault();
+        }
+
         public User GetUserByLogin(string userName, string password)
         {
             return GetEntitiesByFilter(x => x.Email == userName && x.Password == password).FirstOrDefault();
+        }
+
+        public User Get()
+        {
+            Context db = new Context();
+            return db.Users.Include(x => x.Addresses).FirstOrDefault();
         }
     }
 }
