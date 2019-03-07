@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Abstract\ICompanyDal.cs" />
     <Compile Include="Abstract\ICompanyApplyDal.cs" />
+    <Compile Include="Abstract\IMenuDal.cs" />
     <Compile Include="Abstract\IOrderDetailDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IUserDal.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Concrete\CompanyDal.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Mapping\ReviewMapping.cs" />
+    <Compile Include="Concrete\MenuDal.cs" />
     <Compile Include="Concrete\Ninject\DalModule.cs" />
     <Compile Include="Concrete\Ninject\InstanceFactory.cs" />
     <Compile Include="Concrete\OrderDetailDal.cs" />

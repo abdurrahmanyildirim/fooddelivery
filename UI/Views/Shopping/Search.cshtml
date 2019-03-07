@@ -1,0 +1,50 @@
+﻿@model IEnumerable<FoodDelivery.Entities.Concrete.Menu>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4>Arama sonuçları</h4>
+    </div>
+    <div class="panel-body">
+        @{
+            if (Model.Count() > 0)
+            {
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Menü Adı</th>
+                            <th>Açıklaması</th>
+                            <th>Fiyatı</th>
+                            <th>Şirket</th>
+                            <th>Sepet</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ 
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MenuName</td>
+                                    <td>@item.MenuDetail</td>
+                                    <td>@string.Format("{0:C0}", item.Price)</td>
+                                    <td>@item.Company.CompanyName</td>
+                                    <td>ekle</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h4 class="text-center">Menü bulunamadı.</h4>
+            }
+
+        }
+
+    </div>
+</div>
+

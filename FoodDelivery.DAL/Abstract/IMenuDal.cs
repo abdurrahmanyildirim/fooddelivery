@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.DAL.Abstract
 {
-   public interface ICompanyApplyDal:IRepository<CompanyApply>
+    public interface IMenuDal : IRepository<Menu>
     {
-        IQueryable<CompanyApply> GetAppliesByActive();
+        ICollection<Menu> GetMenusByName(string menu);
     }
 }

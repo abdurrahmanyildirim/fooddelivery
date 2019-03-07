@@ -10,7 +10,7 @@ namespace FoodDelivery.DAL.Abstract
 {
     public interface IUserDal:IRepository<User>
     {
-        ICollection<User> GetNameByFilter(string filter);
+        IQueryable<User> GetNameByFilter(string filter);
 
         User GetUserByLogin(string userName, string password);
 

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.DAL.Concrete
 {
-    public class CompanyApplyDal : EntityRepository<CompanyApply, Context>,ICompanyApplyDal
+    public class MenuDal : EntityRepository<Menu, Context>, IMenuDal
     {
-        public IQueryable<CompanyApply> GetAppliesByActive()
+        public ICollection<Menu> GetMenusByName(string menu)
         {
-            return GetEntitiesByFilter(x=>x.IsActive==true);
+            return GetEntitiesByFilter(x => x.MenuName.Contains(menu) || x.MenuDetail.Contains(menu)).ToList();
         }
     }
 }

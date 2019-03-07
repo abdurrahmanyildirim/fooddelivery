@@ -11,11 +11,13 @@ namespace UI.Controllers
     public class ShoppingController : Controller
     {
 
-        IOrderDetailDal _orderDetailDal;
+        private IOrderDetailDal _orderDetailDal;
+        private IMenuDal _menuDal;
 
         public ShoppingController()
         {
             _orderDetailDal = InstanceFactory.GetInstance<IOrderDetailDal>();
+            _menuDal = InstanceFactory.GetInstance<IMenuDal>();
         }
        
         public ActionResult Cart()
@@ -26,6 +28,13 @@ namespace UI.Controllers
             string cookie = Request.Cookies["user"].Value;
 
             return View(_orderDetailDal.GetCartByCookie(cookie));
+        }
+
+        [HttpPost]
+        public ActionResult Search(FormCollection frm)
+        {
+            string menu = frm["menu"];
+            return View(_menuDal.GetMenusByName(menu));
         }
     }
 }

@@ -160,6 +160,7 @@
     <Content Include="Views\Error\Error404.cshtml" />
     <Content Include="Views\Login\_UserLoginPanel.cshtml" />
     <Content Include="Views\Shopping\Cart.cshtml" />
+    <Content Include="Views\Shopping\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
