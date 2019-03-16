@@ -19,11 +19,11 @@
                             <th>Açıklaması</th>
                             <th>Fiyatı</th>
                             <th>Şirket</th>
-                            <th>Sepet</th>
+                            <th style="text-align:center">Sepet Ekle</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @{ 
+                        @{
                             foreach (var item in Model)
                             {
                                 <tr>
@@ -31,7 +31,12 @@
                                     <td>@item.MenuDetail</td>
                                     <td>@string.Format("{0:C0}", item.Price)</td>
                                     <td>@item.Company.CompanyName</td>
-                                    <td>ekle</td>
+                                    <td style="text-align:center;font-size:15pt;">
+                                        <div class="btn btn-default" id="sepeteEkle" data-id="@item.ID">
+                                            <span class="glyphicon glyphicon-plus" style="color:green">
+                                            </span>
+                                        </div>
+                                    </td>
                                 </tr>
                             }
                         }
@@ -47,4 +52,5 @@
 
     </div>
 </div>
+
 

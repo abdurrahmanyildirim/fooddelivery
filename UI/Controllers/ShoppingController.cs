@@ -1,5 +1,6 @@
 ﻿using FoodDelivery.DAL.Abstract;
 using FoodDelivery.DAL.Concrete.Ninject;
+using FoodDelivery.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,17 @@ namespace UI.Controllers
 
         private IOrderDetailDal _orderDetailDal;
         private IMenuDal _menuDal;
+        private IUserDal _userDal;
+        private IOrderDal _orderDal;
 
         public ShoppingController()
         {
             _orderDetailDal = InstanceFactory.GetInstance<IOrderDetailDal>();
             _menuDal = InstanceFactory.GetInstance<IMenuDal>();
+            _userDal = InstanceFactory.GetInstance<IUserDal>();
+            _orderDal = InstanceFactory.GetInstance<IOrderDal>();
         }
-       
+
         public ActionResult Cart()
         {
             if (Request.Cookies["user"] == null)
@@ -35,6 +40,45 @@ namespace UI.Controllers
         {
             string menu = frm["menu"];
             return View(_menuDal.GetMenusByName(menu));
+        }
+
+        // Shopping/AddToCart
+        public void AddToCart(int id)
+        {
+            Menu menu = _menuDal.GetByID(id);
+            User user = _userDal.GetUserByCookie(Request.Cookies["user"].Value);
+
+            if (_orderDal.GetActiveOrderByUser(user.ID) == null)
+            {
+                Order order = new Order()
+                {
+                    AddressID = user.Addresses.FirstOrDefault(x => x.ID == x.User.ID).ID,
+                    TotalPrice = menu.Price,
+                    IsActive = true,
+                    OrderDate = DateTime.Now,
+                    BranchID = 1,//TODO:Dinamik hale getirilecek.
+                    PaymentType = true,//TODO:Default olarak true değeri verilecek. Son satın alma esnasında set edilecek
+                };
+                _orderDal.Add(order);
+            }
+            else
+            {
+                Order order = _orderDal.GetActiveOrderByUser(user.ID);
+                order.TotalPrice += menu.Price;
+                order.OrderDate = DateTime.Now;
+                _orderDal.Update(order);
+            }
+
+            int orderID = _orderDal.GetActiveOrderByUser(user.ID).ID;
+            OrderDetail orderDetail = new OrderDetail()
+            {
+                IsCompleted = false,
+                MenuID = menu.ID,
+                OrderID = orderID,
+                Quantity = 1,
+                TotalAmount = menu.Price
+            };
+            _orderDetailDal.Add(orderDetail);
         }
     }
 }

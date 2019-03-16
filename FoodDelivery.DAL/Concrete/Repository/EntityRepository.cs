@@ -61,6 +61,11 @@ namespace FoodDelivery.DAL.Concrete.Repository
             return db.Set<TEntity>().Find(id);
         }
 
+        public TEntity Get(Expression<Func<TEntity, bool>> filter)
+        {
+            return db.Set<TEntity>().FirstOrDefault(filter);
+        }
+
         public IQueryable<TEntity> GetEntitiesByFilter(Expression<Func<TEntity, bool>> filter)
         {
             return db.Set<TEntity>().Where(filter);

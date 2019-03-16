@@ -20,6 +20,7 @@ namespace FoodDelivery.DAL.Concrete.Ninject
             Bind<ICompanyDal>().To<CompanyDal>().InSingletonScope();
             Bind<IOrderDetailDal>().To<OrderDetailDal>().InSingletonScope();
             Bind<IMenuDal>().To<MenuDal>().InSingletonScope();
+            Bind<IOrderDal>().To<OrderDal>().InSingletonScope();
         }
     }
 }

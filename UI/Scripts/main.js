@@ -77,7 +77,7 @@ $("#btnLogout").click(function () {
     var cookie = Cookies.get("user");
     $.ajax({
         method: "post",
-        url: "/api/Service/Logout?cookie="+cookie,
+        url: "/api/Service/Logout?cookie=" + cookie,
         data: cookie,
         success: function () {
             Cookies.remove('user');
@@ -85,3 +85,18 @@ $("#btnLogout").click(function () {
         }
     });
 });
+
+$("#sepeteEkle").click(function () {
+    var id = $("#sepeteEkle").data('id');
+    var cookie = Cookies.get("user");
+    if (cookie == null) {
+        alert("Lütfen sepete ürün eklemek için giriş yapınız.");
+    }
+    else {
+        $.ajax({
+            method: "get",
+            url: "/Shopping/AddToCart/" + id,
+            success: alert("Ürün Sepete Eklendi.")
+        })
+    }
+})

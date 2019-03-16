@@ -55,6 +55,7 @@
     <Compile Include="Abstract\ICompanyDal.cs" />
     <Compile Include="Abstract\ICompanyApplyDal.cs" />
     <Compile Include="Abstract\IMenuDal.cs" />
+    <Compile Include="Abstract\IOrderDal.cs" />
     <Compile Include="Abstract\IOrderDetailDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IUserDal.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Concrete\MenuDal.cs" />
     <Compile Include="Concrete\Ninject\DalModule.cs" />
     <Compile Include="Concrete\Ninject\InstanceFactory.cs" />
+    <Compile Include="Concrete\OrderDal.cs" />
     <Compile Include="Concrete\OrderDetailDal.cs" />
     <Compile Include="Concrete\UserDal.cs" />
     <Compile Include="Concrete\Mapping\BranchMapping.cs" />
