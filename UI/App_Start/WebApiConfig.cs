@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using UI.Attributes;
 
 namespace UI
 {
@@ -10,6 +11,7 @@ namespace UI
         public static void Register(HttpConfiguration config)
         {
             config.MapHttpAttributeRoutes();
+            config.Filters.Add(new ApiExecptionAttribute());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
