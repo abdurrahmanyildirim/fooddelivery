@@ -1,6 +1,7 @@
 ﻿using FoodDelivery.Entities.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace FoodDelivery.Entities.Concrete
 {
     public class Order : IEntity
     {
-        
+        [Key]
         public int ID { get; set; }
         public int AddressID { get; set; }
         public int BranchID { get; set; }

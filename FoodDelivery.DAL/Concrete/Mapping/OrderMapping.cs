@@ -14,6 +14,8 @@ namespace FoodDelivery.DAL.Concrete.Mapping
         public OrderMapping()
         {
             HasKey(x => x.ID);
+            Property(c => c.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
 
             Property(x => x.TotalPrice).HasColumnType("money");
             Property(x => x.OrderDate).HasColumnType("datetime2");

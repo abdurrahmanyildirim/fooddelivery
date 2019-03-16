@@ -21,7 +21,7 @@ namespace FoodDelivery.DAL.Concrete
         //{
         //}
 
-        public Context() : base(@"server = (LocalDb)\MsSqlLocalDb; database = FoodDelivery; Trusted_Connection=true") { }
+        public Context() : base(@"server = (LocalDb)\MsSqlLocalDb; database = FoodDelivery2; Trusted_Connection=true") { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }

@@ -7,7 +7,7 @@
             }
             else
             {
-                <h4>Giriş Yap</h4>
+                <h4 id="userPanelTitle">Giriş Yap</h4>
             }
         }
 
@@ -20,19 +20,48 @@
             }
             else
             {
-                using (Html.BeginForm("Login", "Login", FormMethod.Post))
-                {
-
+                <div id="message" style="display:none;"></div>
+                <div id="loginForm">
                     <div class="form-group">
                         <label>E-Posta adresiniz: </label><br />
-                        <input type="email" name="email" class="form-control" required placeholder="E-Posta adresiniz" />
+                        <input type="email" id="email" class="form-control" required placeholder="E-Posta adresiniz" />
                     </div>
                     <div class="form-group">
                         <label>Şifreniz: </label><br />
-                        <input type="password" name="password" class="form-control" required placeholder="Şifreniz" />
+                        <input type="password" id="password" class="form-control" required placeholder="Şifreniz" />
                     </div>
-                    <input type="submit" class="form-control btn btn-success" value="Giriş Yap" />
-                }
+                    <input type="button" id="loginButton" class="form-control btn btn-success" value="Giriş Yap" />
+                    <hr />
+                    <a href="#" id="btnRegister" class="btn btn-primary form-control">Kayıt Ol</a>
+                </div>
+
+                <div id="registerForm" style="display:none;">
+                    <div id="mesaj"></div>
+                    <div class="form-group">
+                        <label>Adınız: </label><br />
+                        <input type="text" id="name" class="form-control" required placeholder="Adınız" />
+                    </div>
+                    <div class="form-group">
+                        <label>Soyadınız: </label><br />
+                        <input type="text" id="surname" class="form-control" required placeholder="Soyadınız" />
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon numaranız: </label><br />
+                        <input type="tel" id="phone" class="form-control" required placeholder="Telefon numaranız" />
+                    </div>
+                    <div class="form-group">
+                        <label>E-Posta adresiniz: </label><br />
+                        <input type="email" id="remail" class="form-control" required placeholder="E-Posta adresiniz" />
+                    </div>
+                    <div class="form-group">
+                        <label>Şifreniz: </label><br />
+                        <input type="password" id="rpassword" class="form-control" required placeholder="Şifreniz" />
+                    </div>
+                    <input type="button" id="registerButton" class="btn btn-primary form-control" value="Kayıt Ol" />
+                    <hr />
+                    <a href="#" id="btnLogin" class="btn btn-default form-control">Girişe Dön</a>
+                </div>
+
             }
         }
     </div>
