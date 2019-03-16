@@ -16,57 +16,61 @@ namespace FoodDelivery.DAL.Concrete.Repository
         where TContext : DbContext, new()
     {
         TContext db;
+        object _lockObject = new object();
 
         public EntityRepository()
         {
-            if (db==null)
+            lock (_lockObject)
             {
-                db = new TContext();
+                if (db == null)
+                {
+                    db = new TContext();
+                }
             }
         }
 
         public void Add(TEntity entity)
         {
-                var addEntity = db.Entry(entity);
-                addEntity.State = EntityState.Added;
-                DbSave(db);
+            var addEntity = db.Entry(entity);
+            addEntity.State = EntityState.Added;
+            DbSave(db);
         }
 
         public void DeleteByEntity(TEntity entity)
         {
-                var deleteEntity = db.Entry(entity);
-                deleteEntity.State = EntityState.Deleted;
-                DbSave(db);
+            var deleteEntity = db.Entry(entity);
+            deleteEntity.State = EntityState.Deleted;
+            DbSave(db);
         }
 
         public void DeleteByID(int id)
         {
-                var deleteEntity = db.Entry(GetByID(id));
-                deleteEntity.State = EntityState.Deleted;
-                DbSave(db);
+            var deleteEntity = db.Entry(GetByID(id));
+            deleteEntity.State = EntityState.Deleted;
+            DbSave(db);
         }
 
         public ICollection<TEntity> GetAll()
         {
-                return db.Set<TEntity>().ToList();
+            return db.Set<TEntity>().ToList();
         }
-        
+
 
         public TEntity GetByID(int id)
         {
-                return db.Set<TEntity>().Find(id);
+            return db.Set<TEntity>().Find(id);
         }
 
         public IQueryable<TEntity> GetEntitiesByFilter(Expression<Func<TEntity, bool>> filter)
         {
-                return db.Set<TEntity>().Where(filter);
+            return db.Set<TEntity>().Where(filter);
         }
 
         public void Update(TEntity entity)
         {
-                var updateDatabase = db.Entry(entity);
-                updateDatabase.State = EntityState.Modified;
-                DbSave(db);
+            var updateDatabase = db.Entry(entity);
+            updateDatabase.State = EntityState.Modified;
+            DbSave(db);
         }
 
         public void DbSave(DbContext db)
