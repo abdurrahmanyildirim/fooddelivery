@@ -9,15 +9,18 @@ using FoodDelivery.DAL.Concrete.Ninject;
 using FoodDelivery.Entities.Concrete;
 using System.Web;
 using UI.DTOs;
+using Newtonsoft.Json;
 
 namespace UI.Controllers
 {
     public class ServiceController : ApiController
     {
         IUserDal _userDal;
+        IMenuDal _menuDal;
         public ServiceController()
         {
             _userDal = InstanceFactory.GetInstance<IUserDal>();
+            _menuDal = InstanceFactory.GetInstance<IMenuDal>();
         }
 
         //Adres:  api/Service/Login
@@ -87,6 +90,39 @@ namespace UI.Controllers
                 _userDal.Update(myUser);
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage GetMenu([FromBody]MenuInfoDto gelenMenu)
+        {
+            if (!ModelState.IsValid)
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "ID Olmalı");
+
+            Menu menu = _menuDal.GetByID(gelenMenu.MenuID);
+            if(menu == null)
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Menü bulunamadı!");
+
+            gelenMenu.MenuAdi = menu.MenuName;
+            gelenMenu.MenuFiyati = menu.Price * gelenMenu.MenuAdedi;
+            return Request.CreateResponse(HttpStatusCode.OK, gelenMenu);
+
+        }
+
+        [HttpPost]
+        public HttpResponseMessage ConfirmOrder([FromBody]ConfirmOrderDto codto)
+        {
+            if (!ModelState.IsValid)
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Hatali model!");
+            string cookie = codto.Cookie;
+            List<List<int>> sepetArray = JsonConvert.DeserializeObject<List<List<int>>>(codto.OrderArray);
+            User user = _userDal.GetUserByCookie(cookie);
+            if (user == null)
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "User Bulunamadı!");
+
+
+
+
+            return Request.CreateResponse(HttpStatusCode.OK, sepetArray[0][0]);
         }
     }
 }

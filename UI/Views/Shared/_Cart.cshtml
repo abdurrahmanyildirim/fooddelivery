@@ -1,23 +1,23 @@
 ﻿<div class="panel panel-primary">
     <div class="panel-heading">
-        <h4>Sepetiniz</h4>
+        <h4><span class="glyphicon glyphicon-shopping-cart"></span> Sepetiniz</h4>
+        
     </div>
     <div class="panel-body">
-        @{
-            if (HttpContext.Current.Request.Cookies["user"] != null)
-            {
-                Html.RenderAction("_SepetSection", "Login");
-            }
-            else
-            {
-                <h4>Sepetinizi görüntülemek için lütfen giriş yapınız. </h4>
-            }
-        }
+        <div id="sepetMesaji" style="display:none;"><h4 class="text-center">Sepetiniz şu an boş.</h4></div>
+        <div id="sepetim" style="display:none;">
+            <table class="table table-hover" id="sepetTablo">
+                <thead>
+                    <tr>
+                        <th>Menü</th>
+                        <th>Adet</th>
+                    </tr>
+                </thead>
+                <tbody id="sepettekiler">
+                </tbody>
+            </table>
+            <hr />
+            <a href="@Url.Action("Cart", "Shopping")" class="btn btn-default form-control">Sepete Git</a>
+        </div>
     </div>
-    @if (HttpContext.Current.Request.Cookies["user"] != null)
-    {
-    <div class="panel-footer">
-        <input type="button" class="btn btn-success form-control" value="SEPETİ ONAYLA" />
-    </div>
-    }
 </div>

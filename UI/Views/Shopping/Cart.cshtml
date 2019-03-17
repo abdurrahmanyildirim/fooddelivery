@@ -1,37 +1,37 @@
-﻿@model IEnumerable<FoodDelivery.Entities.Concrete.OrderDetail>
-@{
+﻿@{
     ViewBag.Title = "Cart";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
-<div class="panel panel-danger" >
+<div class="panel panel-primary" >
     <div class="panel-heading">
         Sepetiniz
     </div>
     <div class="panel-body">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Çıkar</th>
-                    <th>Menü Adı</th>
-                    <th>Adedi</th>
-                    <th>Fiyatı</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{ 
-                    foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>ç</td>
-                            <td>@item.Menu.MenuName</td>
-                            <td>@item.Quantity</td>
-                            <td>@string.Format("{0:C0}", item.TotalAmount)</td>
-                        </tr>
-                    }
-                }
-            </tbody>
-        </table>
+        <div id="anaSepetMesaji" style="display:none;"><h4 class="text-center">Sepetiniz şu an boş.</h4></div>
+        <div id="anaSepet" style="display:none;">
+            <table class="table table-hover" id="anaSepetTablo">
+                <thead>
+                    <tr>
+                        <th>Çıkar</th>
+                        <th>Menü Adı</th>
+                        <th>Adedi</th>
+                        <th>Fiyatı</th>
+                    </tr>
+                </thead>
+                <tbody id="anaSepettekiler"></tbody>
+            </table>
+            <hr />
+            <div class="pull-left"><h4><b>Toplam Fiyat: <span class="text-success" id="toplamFiyat">####</span><span class="text-success"> ₺</span></b></h4></div><div class="pull-right"><a id="sepetiOnayla" class="btn btn-success">Siparişi Tamamla</a></div>
+        </div>
     </div>
 </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            anaSepetiYukle();
+        });
+    </script>
+}
 

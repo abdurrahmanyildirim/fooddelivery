@@ -35,10 +35,9 @@ namespace UI.Controllers
             return View(_orderDetailDal.GetCartsByCookie(cookie));
         }
 
-        [HttpPost]
-        public ActionResult Search(FormCollection frm)
+        [HttpGet]
+        public ActionResult Search(string menu)
         {
-            string menu = frm["menu"];
             return View(_menuDal.GetMenusByName(menu));
         }
 

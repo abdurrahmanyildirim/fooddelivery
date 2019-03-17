@@ -26,7 +26,7 @@
                 @{
                     if (Request.Cookies["user"] != null)
                     {
-                        using (Html.BeginForm("Search", "Shopping", FormMethod.Post))
+                        using (Html.BeginForm("Search", "Shopping", FormMethod.Get))
                         {
                             <div class="row" style="margin-top:10px;">
                                 <div class="col-md-9 col-lg-9 col-xs-12">
@@ -55,8 +55,10 @@
     <div class="container-fluid" style="padding-left:40px; padding-right:40px;">
         <div class="row" style="margin-top:80px;">
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                @Html.Partial("_UserPanel")
-                @Html.Partial("_Cart")
+                @{
+                    Html.RenderPartial("_UserPanel");
+                    Html.RenderPartial("_Cart");
+                }
                 @RenderSection("reklamAlani", false)
             </div>
 
@@ -97,6 +99,8 @@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="~/Scripts/notify.min.js"></script>
     <script src="~/Scripts/main.js"></script>
+    @RenderSection("scripts", false)
 </body>
 </html>

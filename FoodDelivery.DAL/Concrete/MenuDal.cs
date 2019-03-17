@@ -11,6 +11,7 @@ namespace FoodDelivery.DAL.Concrete
 {
     public class MenuDal : EntityRepository<Menu, Context>, IMenuDal
     {
+
         public ICollection<Menu> GetMenusByName(string menu)
         {
             return GetEntitiesByFilter(x => x.MenuName.ToLower().Contains(menu.ToLower()) || x.MenuDetail.ToLower().Contains(menu.ToLower())).ToList();
