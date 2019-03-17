@@ -10,6 +10,7 @@ namespace FoodDelivery.DAL.Abstract
 {
     public interface IOrderDetailDal: IRepository<OrderDetail>
     {
-        ICollection<OrderDetail> GetCartByCookie(string cookie);
+        ICollection<OrderDetail> GetCartsByCookie(string cookie);
+        OrderDetail GetCartByMenuUserOrder(int menuID, int userID, int orderID);
     }
 }

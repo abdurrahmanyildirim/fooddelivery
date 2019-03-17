@@ -11,9 +11,14 @@ namespace FoodDelivery.DAL.Concrete
 {
     public class OrderDetailDal : EntityRepository<OrderDetail, Context>, IOrderDetailDal
     {
-        public ICollection<OrderDetail> GetCartByCookie(string cookie)
+        public ICollection<OrderDetail> GetCartsByCookie(string cookie)
         {
             return GetEntitiesByFilter(x => x.Order.Address.User.Cookie == cookie && x.IsCompleted == false).ToList();
+        }
+
+        public OrderDetail GetCartByMenuUserOrder(int menuID,int userID,int orderID)
+        {
+            return Get(x => x.MenuID == menuID && x.OrderID == orderID && x.Order.Address.UserID == userID && x.IsCompleted == false);
         }
     }
 }

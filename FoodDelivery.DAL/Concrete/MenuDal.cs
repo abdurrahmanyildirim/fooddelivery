@@ -13,7 +13,7 @@ namespace FoodDelivery.DAL.Concrete
     {
         public ICollection<Menu> GetMenusByName(string menu)
         {
-            return GetEntitiesByFilter(x => x.MenuName.ToLower().Contains(menu.ToLower())).ToList();
+            return GetEntitiesByFilter(x => x.MenuName.ToLower().Contains(menu.ToLower()) || x.MenuDetail.ToLower().Contains(menu.ToLower())).ToList();
         }
     }
 }

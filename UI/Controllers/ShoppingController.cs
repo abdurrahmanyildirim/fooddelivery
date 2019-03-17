@@ -32,7 +32,7 @@ namespace UI.Controllers
 
             string cookie = Request.Cookies["user"].Value;
 
-            return View(_orderDetailDal.GetCartByCookie(cookie));
+            return View(_orderDetailDal.GetCartsByCookie(cookie));
         }
 
         [HttpPost]
@@ -70,15 +70,26 @@ namespace UI.Controllers
             }
 
             int orderID = _orderDal.GetActiveOrderByUser(user.ID).ID;
-            OrderDetail orderDetail = new OrderDetail()
+
+            if (_orderDetailDal.GetCartByMenuUserOrder(menu.ID, user.ID, orderID) == null)
             {
-                IsCompleted = false,
-                MenuID = menu.ID,
-                OrderID = orderID,
-                Quantity = 1,
-                TotalAmount = menu.Price
-            };
-            _orderDetailDal.Add(orderDetail);
+                OrderDetail orderDetail = new OrderDetail()
+                {
+                    IsCompleted = false,
+                    MenuID = menu.ID,
+                    OrderID = orderID,
+                    Quantity = 1, //TODO:Dinamik hale getirilebilir.
+                    TotalAmount = menu.Price
+                };
+                _orderDetailDal.Add(orderDetail);
+            }
+            else
+            {
+                OrderDetail orderDetail = _orderDetailDal.GetCartByMenuUserOrder(menu.ID, user.ID, orderID);
+                orderDetail.Quantity++;
+                orderDetail.TotalAmount = orderDetail.Quantity * menu.Price;
+                _orderDetailDal.Update(orderDetail);
+            }
         }
     }
 }
