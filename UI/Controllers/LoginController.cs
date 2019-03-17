@@ -12,10 +12,12 @@ namespace UI.Controllers
     public class LoginController : Controller
     {
         IUserDal _userDal;
-        
+        IOrderDetailDal _orderDetailDal;
+
         public LoginController()
         {
             _userDal = InstanceFactory.GetInstance<IUserDal>();
+            _orderDetailDal = InstanceFactory.GetInstance<IOrderDetailDal>();
         }
 
         public PartialViewResult _UserLoginPanel()
@@ -33,9 +35,9 @@ namespace UI.Controllers
 
         public PartialViewResult _SepetSection()
         {
-            return PartialView("~/Views/Login/_UserLoginPanel.cshtml");
+            string cookie = Request.Cookies["user"].Value;
+            return PartialView("~/Views/Login/_LoginCart.cshtml", _orderDetailDal.GetCartsByCookie(cookie));
         }
-
 
     }
 }

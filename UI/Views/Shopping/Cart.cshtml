@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
-<div class="panel panel-primary" >
+<div class="panel panel-danger" >
     <div class="panel-heading">
         Sepetiniz
     </div>
@@ -26,7 +26,7 @@
                             <td>ç</td>
                             <td>@item.Menu.MenuName</td>
                             <td>@item.Quantity</td>
-                            <td>@string.Format("{0:C0}", item.Menu.Price*item.Quantity)</td>
+                            <td>@string.Format("{0:C0}", item.TotalAmount)</td>
                         </tr>
                     }
                 }

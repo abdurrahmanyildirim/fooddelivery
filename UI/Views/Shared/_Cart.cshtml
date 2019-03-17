@@ -1,0 +1,23 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4>Sepetiniz</h4>
+    </div>
+    <div class="panel-body">
+        @{
+            if (HttpContext.Current.Request.Cookies["user"] != null)
+            {
+                Html.RenderAction("_SepetSection", "Login");
+            }
+            else
+            {
+                <h4>Sepetinizi görüntülemek için lütfen giriş yapınız. </h4>
+            }
+        }
+    </div>
+    @if (HttpContext.Current.Request.Cookies["user"] != null)
+    {
+    <div class="panel-footer">
+        <input type="button" class="btn btn-success form-control" value="SEPETİ ONAYLA" />
+    </div>
+    }
+</div>

@@ -1,0 +1,20 @@
+﻿@model IEnumerable<FoodDelivery.Entities.Concrete.OrderDetail>
+
+
+<div class="panel-body">
+    <table class="table table-responsive">
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td><button type="button"><span class="glyphicon glyphicon-floppy-remove"></span></button></td>
+                        <td>@item.Menu.MenuName</td>
+                        <td>@item.Quantity</td>
+                        <td>@string.Format("{0:C0}", item.TotalAmount)</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -43,7 +43,7 @@ namespace UI.Controllers
         }
 
         // Shopping/AddToCart
-        public void AddToCart(int id)
+        public PartialViewResult AddToCart(int id)
         {
             Menu menu = _menuDal.GetByID(id);
             User user = _userDal.GetUserByCookie(Request.Cookies["user"].Value);
@@ -90,6 +90,11 @@ namespace UI.Controllers
                 orderDetail.TotalAmount = orderDetail.Quantity * menu.Price;
                 _orderDetailDal.Update(orderDetail);
             }
+            string cookie = Request.Cookies["user"].Value;
+
+            return PartialView("~/Views/Login/_LoginCart.cshtml", _orderDetailDal.GetCartsByCookie(cookie));
         }
+
+
     }
 }
