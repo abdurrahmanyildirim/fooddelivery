@@ -1,6 +1,9 @@
 ﻿@model FoodDelivery.Entities.Concrete.User
 
-<h5>Merhaba @Model.FirstName</h5>
-
+<h4>Merhaba <b>@Model.FirstName @Model.LastName</b></h4>
+<div class="list-group">
+    <a href="@Url.Action("Order", "Profile")" class="list-group-item">Siparişlerim</a>
+    <a href="@Url.Action("Address", "Profile")" class="list-group-item">Adreslerim</a>
+</div>
 <hr />
 <a class="btn btn-danger form-control" id="btnLogout">Çıkış Yap</a> 

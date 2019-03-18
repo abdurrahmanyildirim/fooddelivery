@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.DAL.Abstract
 {
-    public interface IOrderDal : IRepository<Order>
+    public interface IAddressDal: IRepository<Address>
     {
-        Order GetActiveOrderByUser(int id);
-
-        ICollection<Order> GetOrdersByUserID(int id);
+        ICollection<Address> GetAddressByUserID(int userID);
     }
 }

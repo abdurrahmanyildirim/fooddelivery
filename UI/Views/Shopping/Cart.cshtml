@@ -1,9 +1,18 @@
-﻿@{
+﻿@model IEnumerable<FoodDelivery.Entities.Concrete.Address>
+@{
     ViewBag.Title = "Cart";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    bool adresVarMi = Model.Count() > 0;
 }
+<div id="panelMesaj" style="display:none;" class="panel panel-default">
+    <div class="panel-body">
+        <h3 class="text-center text-success">Siparişiniz onaylandı!</h3><br />
+        <h5 class="text-center">Siparişlerim sayfasına yönlendiriliyorsunuz..</h5>
+    </div>
+</div>
 
-<div class="panel panel-primary" >
+
+<div class="panel panel-primary" id="panelSepet">
     <div class="panel-heading">
         Sepetiniz
     </div>
@@ -22,7 +31,58 @@
                 <tbody id="anaSepettekiler"></tbody>
             </table>
             <hr />
-            <div class="pull-left"><h4><b>Toplam Fiyat: <span class="text-success" id="toplamFiyat">####</span><span class="text-success"> ₺</span></b></h4></div><div class="pull-right"><a id="sepetiOnayla" class="btn btn-success">Siparişi Tamamla</a></div>
+            <div class="row pull-left">
+                @{
+                    if (adresVarMi)
+                    {
+                        <div class="col-md-6">
+                            <h4><b>Adres Seçiniz </b></h4>
+                            <select id="cartAddress" class="form-control">
+                                @{
+                                    foreach (var item in Model)
+                                    {
+                                        <option value="@item.ID">@item.Title</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                            <div class="col-md-6">
+                                <h4><b>Ödeme Tipi</b></h4>
+                                <select id="odemeTipi" class="form-control">
+                                    <option value="0">Nakit</option>
+                                    <option value="1">Kredi / Banka Kartı</option>
+                                </select>
+                            </div>
+
+
+                                    }
+                                    else
+                                    {
+                                        <span class="text-danger">Siparişi Tamamlamadan önce adres girmelisiniz!</span>
+                                    }
+                }
+
+            </div>
+
+            <div class="row pull-right" style="padding-right:20px;">
+                <div class="col-md-6">
+                    <h4>
+                        <b>
+                            Toplam Fiyat <br /><span style="padding-top:16px;"><span class="text-success" style="font-size:20pt;" id="toplamFiyat">####</span><span style="font-size:20pt;" class="text-success"> ₺</span></span>
+                        </b>
+                    </h4>
+                </div>
+                <div class="col-md-6">
+                    @{
+                        if (adresVarMi)
+                        {
+                            <div style="padding-top:10px;" class="pull-left"><a id="sepetiOnayla" class="btn btn-success form-control">Siparişi Tamamla</a></div>
+                        }
+                    }
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>

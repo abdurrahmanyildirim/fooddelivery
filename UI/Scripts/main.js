@@ -95,6 +95,7 @@ $("#btnLogout").click(function () {
 function sepeteEkle() {
     var id = parseInt($(this).attr('data-id'));
     var sayisi = parseInt($("#menuSayisi[data-id='" + id + "'").val());
+    var companyID = parseInt($("#companyID[data-id='" + id + "']").val());
     if (sepetArray.length > 0) {
         var sepetteVarMi = false;
         for (var k in sepetArray) {
@@ -115,18 +116,26 @@ function sepeteEkle() {
         }
 
         if (sepetteVarMi == false) {
-            sepetArray.push([id, sayisi]);
-            $.notify("Sepete eklendi.", { className: 'success', position: 'bottom right' });
-            Cookies.set("cart", JSON.stringify(sepetArray));
-            sepetiYukle();
+            var ekleyebilirMi = true;
+            for (var k in sepetArray) {
+                if (sepetArray[k][2] != companyID) {
+                    $.notify("Farklı firmadan ürün ekleyemezsiniz!", { className: 'danger', position: 'bottom right' });
+                    ekleyebilirMi = false;
+                }
+            }
+            if (ekleyebilirMi) {
+                sepetArray.push([id, sayisi, companyID]);
+                $.notify("Sepete eklendi.", { className: 'success', position: 'bottom right' });
+                Cookies.set("cart", JSON.stringify(sepetArray));
+                sepetiYukle();
+            }
         }
     } else {
-        sepetArray.push([id,sayisi]);
+        sepetArray.push([id, sayisi, companyID]);
         $.notify("Sepete eklendi.", { className: 'success', position: 'bottom right' });
         Cookies.set("cart", JSON.stringify(sepetArray));
         sepetiYukle();
     }
-
 }
 
 function sepetiGuncelle(id, sonAdet) {
@@ -276,16 +285,26 @@ $("#sepetiOnayla").click(function () {
     if (cookie != null) {
         if (sepetArray.length != 0) {
             var orderArray = JSON.stringify(sepetArray);
+            var addressId = parseInt($("#cartAddress").val());
+            var odemeTipi = parseInt($("#odemeTipi").val());
             $.ajax({
                 method: "post",
                 url: "/api/Service/ConfirmOrder",
                 dataType: "json",
                 data: {
                     Cookie: cookie,
-                    OrderArray: orderArray
+                    OrderArray: orderArray,
+                    AddressID: addressId,
+                    PaymentType: odemeTipi
                 },
-                success: function (result) {
-                    alert("success!: " + result);
+                success: function () {
+                    $("#panelSepet").fadeOut(500);
+                    $("#panelMesaj").delay(500).fadeIn(100);
+                    Cookies.remove("cart");
+                    sepetiYukle();
+                    setTimeout(function () {
+                        window.location.href = "/Profile/Order";
+                    }, 3000);
                 }
             });
         }

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<FoodDelivery.Entities.Concrete.Address>
+@{
+    ViewBag.Title = "Address";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ICollection<FoodDelivery.Entities.Concrete.Region> ilceler = ViewBag.Ilceler as ICollection<FoodDelivery.Entities.Concrete.Region>;
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3>Adreslerim</h3>
+    </div>
+    <div class="panel-body">
+        @{
+            if (Model.Count() > 0)
+            {
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Başlık</th>
+                            <th>Adres</th>
+                            <th>Şehir</th>
+                            <th>İlçe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (FoodDelivery.Entities.Concrete.Address a in Model)
+                            {
+                                <tr>
+                                    <td>@a.Title</td>
+                                    <td>@a.AddressDetail </td>
+                                    <td>@a.Region.City.CityName</td>
+                                    <td>@a.Region.RegionName</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table><br /><br />
+                            }
+                            else
+                            {
+                                <h3 class="text-center">Henüz bir adresiniz bulunmamaktadır.</h3>
+                            }
+        }
+       
+        <hr />
+        <h3>Yeni Adres Ekle</h3>
+        @using (Html.BeginForm("Address", "Profile", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Adres Başlığı: </label><br />
+                        <input type="text" class="form-control" name="baslik" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Adres Detayı: </label><br />
+                        <textarea name="detay" class="form-control" rows="3" style="resize:none;" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="ilce" required>
+                            @{
+                                foreach (var ilce in ilceler)
+                                {
+                                    <option value="@ilce.ID">@ilce.RegionName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <input type="submit" class="btn btn-success pull-right" value="Adresi Kaydet" />
+                </div>
+            </div>
+             }
+    </div>
+    </div>

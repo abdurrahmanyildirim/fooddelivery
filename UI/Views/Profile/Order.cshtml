@@ -1,0 +1,46 @@
+﻿@model IEnumerable<FoodDelivery.Entities.Concrete.OrderDetail>
+@{
+    ViewBag.Title = "Siparişlerim";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3>Siparişlerim</h3>
+    </div>
+    <div class="panel-body">
+        @{
+            if (Model.Count() > 0)
+            {
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Menü Adı</th>
+                            <th>Miktar</th>
+                            <th>Toplam Fiyat</th>
+                            <th>Tarih</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (FoodDelivery.Entities.Concrete.OrderDetail od in Model)
+                            {
+                                <tr>
+                                    <td>@od.Menu.MenuName</td>
+                                    <td>@od.Quantity</td>
+                                    <td>@od.TotalAmount</td>
+                                    <td>@od.Order.OrderDate</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                            }
+                            else
+                            {
+                                <h3 class="text-center">Geçmiş siparişiniz bulunmamaktadır.</h3>
+                            }
+        }
+
+    </div>
+</div>

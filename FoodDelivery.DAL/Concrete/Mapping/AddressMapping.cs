@@ -1,4 +1,5 @@
 ﻿using FoodDelivery.Entities;
+using FoodDelivery.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;

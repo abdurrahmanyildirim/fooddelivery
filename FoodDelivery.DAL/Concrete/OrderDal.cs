@@ -15,5 +15,10 @@ namespace FoodDelivery.DAL.Concrete
         {
             return Get(x => x.Address.UserID == id && x.IsActive == true);
         }
+
+        public ICollection<Order> GetOrdersByUserID(int id)
+        {
+            return GetEntitiesByFilter(x => x.Address.UserID == id).ToList();
+        }
     }
 }

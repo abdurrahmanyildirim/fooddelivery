@@ -9,5 +9,7 @@ namespace UI.DTOs
     {
         public string Cookie { get; set; }
         public string OrderArray { get; set; }
+        public int AddressID { get; set; }
+        public int PaymentType { get; set; }
     }
 }

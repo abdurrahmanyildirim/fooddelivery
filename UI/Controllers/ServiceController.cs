@@ -17,10 +17,14 @@ namespace UI.Controllers
     {
         IUserDal _userDal;
         IMenuDal _menuDal;
+        IOrderDal _orderDal;
+        IOrderDetailDal _orderDetailDal;
         public ServiceController()
         {
             _userDal = InstanceFactory.GetInstance<IUserDal>();
             _menuDal = InstanceFactory.GetInstance<IMenuDal>();
+            _orderDal = InstanceFactory.GetInstance<IOrderDal>();
+            _orderDetailDal = InstanceFactory.GetInstance<IOrderDetailDal>();
         }
 
         //Adres:  api/Service/Login
@@ -114,15 +118,46 @@ namespace UI.Controllers
             if (!ModelState.IsValid)
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Hatali model!");
             string cookie = codto.Cookie;
-            List<List<int>> sepetArray = JsonConvert.DeserializeObject<List<List<int>>>(codto.OrderArray);
             User user = _userDal.GetUserByCookie(cookie);
             if (user == null)
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "User Bulunamadı!");
 
+            List<List<int>> sepetArray = JsonConvert.DeserializeObject<List<List<int>>>(codto.OrderArray);
+            int addressID = codto.AddressID;
+            bool paymentType = codto.PaymentType == 0;
+            decimal totalPrice = 0;
+            
+            int orderCount = sepetArray.Count;
+            for (int i = 0; i < orderCount; i++)
+            {
+                totalPrice += (_menuDal.GetByID(sepetArray[i][0]).Price) * sepetArray[i][1];
+            }
 
+            Order o = new Order()
+            {
+                BranchID = sepetArray[0][2],
+                AddressID = addressID,
+                IsActive = true,
+                OrderDate = DateTime.Now,
+                PaymentType = paymentType,
+                TotalPrice = totalPrice
+            };
+            _orderDal.Add(o);
 
+            for (int i = 0; i < orderCount; i++)
+            {
+                OrderDetail od = new OrderDetail()
+                {
+                    IsCompleted = true,
+                    MenuID = sepetArray[i][0],
+                    OrderID = o.ID,
+                    Quantity = sepetArray[i][1],
+                    TotalAmount = _menuDal.GetByID(sepetArray[i][0]).Price * sepetArray[i][1]
+                };
+                _orderDetailDal.Add(od);
+            }
 
-            return Request.CreateResponse(HttpStatusCode.OK, sepetArray[0][0]);
+            return Request.CreateResponse(HttpStatusCode.OK, "Başarılı");
         }
     }
 }

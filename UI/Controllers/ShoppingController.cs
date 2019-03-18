@@ -16,6 +16,7 @@ namespace UI.Controllers
         private IMenuDal _menuDal;
         private IUserDal _userDal;
         private IOrderDal _orderDal;
+        private IAddressDal _addressDal;
 
         public ShoppingController()
         {
@@ -23,6 +24,7 @@ namespace UI.Controllers
             _menuDal = InstanceFactory.GetInstance<IMenuDal>();
             _userDal = InstanceFactory.GetInstance<IUserDal>();
             _orderDal = InstanceFactory.GetInstance<IOrderDal>();
+            _addressDal = InstanceFactory.GetInstance<IAddressDal>();
         }
 
         public ActionResult Cart()
@@ -31,8 +33,7 @@ namespace UI.Controllers
                 return RedirectToAction("Error404", "Error");
 
             string cookie = Request.Cookies["user"].Value;
-
-            return View(_orderDetailDal.GetCartsByCookie(cookie));
+            return View(_addressDal.GetAddressByUserID(_userDal.GetUserByCookie(cookie).ID));
         }
 
         [HttpGet]
