@@ -34,14 +34,22 @@
         <div class="row" style="margin-top:80px;">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    @RenderBody()
+                    @*@if (Request.Cookies["company"] != null)
+                    {
+                        <div class="col-md-3">
+                            Html.RenderPartial("_companyPartial", "Company");
+                        </div>
+                    }
+                    <div class="col-md-9">*@
+                        @RenderBody()
+                    @*</div>*@
                 </div>
             </div>
         </div>
     </div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    @RenderSection("scriptsCompany",false)
+    @RenderSection("scriptsCompany", false)
 </body>
 
 </html>

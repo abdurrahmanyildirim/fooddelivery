@@ -202,6 +202,7 @@
     <Content Include="Views\Profile\Order.cshtml" />
     <Content Include="Views\Profile\Address.cshtml" />
     <Content Include="Views\Company\CompanyLogin.cshtml" />
+    <Content Include="Views\Company\_companyPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

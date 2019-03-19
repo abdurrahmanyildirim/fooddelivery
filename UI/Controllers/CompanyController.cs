@@ -18,6 +18,7 @@ namespace UI.Controllers
         IReviewDal _reviewDal;
         IBranchDal _branchDal;
         IRegionDal _regionDal;
+
         public CompanyController()
         {
             _regionDal = InstanceFactory.GetInstance<IRegionDal>();
@@ -29,15 +30,24 @@ namespace UI.Controllers
 
         public ActionResult Admin()
         {
-            if (Request.Cookies["company"].Value!=null)
+            if (Request.Cookies["company"] != null)
             {
                 List<MenuPointDto> menuPointDtos = new List<MenuPointDto>();
                 menuPointDtos = MenuleriHesapla(menuPointDtos);
-                return View("CompanyLogin",menuPointDtos);
+                return View("CompanyLogin", menuPointDtos);
             }
             return View();
         }
 
+        public PartialViewResult _companyPartial()
+        {
+            string cookie = Request.Cookies["company"].Value;
+
+            Company company = _companyDal.GetCompanyByCookie(cookie);
+
+            return PartialView(company);
+        }
+        [HttpPost]
         public ActionResult CompanyLogin(FormCollection frm)
         {
             string email = frm["email"];
@@ -46,7 +56,6 @@ namespace UI.Controllers
 
             if (company != null)
             {
-
                 string cerezKodu = Guid.NewGuid().ToString("n").Substring(0, 12);
                 HttpCookie cookie = new HttpCookie("company", cerezKodu);
                 cookie.Expires = DateTime.Now.AddYears(1);
@@ -77,10 +86,10 @@ namespace UI.Controllers
                 {
                     puan += review.Point;
                 }
-                
-                if (reviews.Count>0)
+
+                if (reviews.Count > 0)
                     puan = puan / reviews.Count;
-                
+
                 MenuPointDto menuPointDto = new MenuPointDto()
                 {
                     Detail = item.MenuDetail,
@@ -109,6 +118,7 @@ namespace UI.Controllers
             return View(branchRegionsDto);
         }
 
+        [HttpPost]
         public ActionResult ChangeIsActive(int id)
         {
             Branch branch = _branchDal.GetByID(id);
@@ -125,6 +135,7 @@ namespace UI.Controllers
             return RedirectToAction("Branches", "Company");
         }
 
+        [HttpPost]
         public ActionResult AddBranch(FormCollection frm)
         {
             string cookie = Request.Cookies["company"].Value;
