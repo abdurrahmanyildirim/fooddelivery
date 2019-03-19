@@ -152,13 +152,13 @@ namespace UI.Controllers
 
         public ActionResult Menus()
         {
-            return View(_menuDal.GetAll());
+            string cookie = Request.Cookies["company"].Value;
+            return View(_menuDal.GetMenusByCompanyCookie(cookie));
         }
         //TODO: Burada Menü ekleme işlemi yapılacak
         public ActionResult AddMenu()
         {
-            return View(_menuDal.GetAll());
+            return RedirectToAction("Menus");
         }
-
     }
 }
