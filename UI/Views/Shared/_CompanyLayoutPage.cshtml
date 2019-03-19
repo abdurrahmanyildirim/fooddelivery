@@ -32,17 +32,21 @@
     </nav>
     <div class="container">
         <div class="row" style="margin-top:80px;">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    @*@if (Request.Cookies["company"] != null)
-                    {
-                        <div class="col-md-3">
-                            Html.RenderPartial("_companyPartial", "Company");
-                        </div>
+
+            @if (Request.Cookies["company"] != null)
+            {
+                <div class="col-md-3">
+                    @{
+                        Html.RenderAction("_companyPartial", "Company");
                     }
-                    <div class="col-md-9">*@
+                </div>
+            }
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
                         @RenderBody()
-                    @*</div>*@
+                    </div>
                 </div>
             </div>
         </div>

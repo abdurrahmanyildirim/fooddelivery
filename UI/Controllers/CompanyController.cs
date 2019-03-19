@@ -42,10 +42,7 @@ namespace UI.Controllers
         public PartialViewResult _companyPartial()
         {
             string cookie = Request.Cookies["company"].Value;
-
-            Company company = _companyDal.GetCompanyByCookie(cookie);
-
-            return PartialView(company);
+            return PartialView(_companyDal.GetCompanyByCookie(cookie));
         }
         [HttpPost]
         public ActionResult CompanyLogin(FormCollection frm)
