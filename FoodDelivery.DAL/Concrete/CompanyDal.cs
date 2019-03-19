@@ -11,5 +11,14 @@ namespace FoodDelivery.DAL.Concrete
 {
     public class CompanyDal : EntityRepository<Company, Context>, ICompanyDal
     {
+        public Company GetCompanyByLogin(string email, string password)
+        {
+            return Get(x => x.Email == email && x.Password == password);
+        }
+
+        public Company GetCompanyByCookie(string cookie)
+        {
+            return Get(x => x.Cookie == cookie);
+        }
     }
 }

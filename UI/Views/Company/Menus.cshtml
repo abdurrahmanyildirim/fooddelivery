@@ -7,23 +7,66 @@
 <table class="table table-hover">
     <thead>
         <tr>
+            @*<th>Temsili Resim</th>*@
             <th>İsim</th>
             <th>Açıklama</th>
             <th>Fiyat</th>
         </tr>
     </thead>
     <tbody>
-        @{ 
+        @{
             foreach (var item in Model)
             {
                 <tr>
+                    @*<td>
+                        <div class="thumbnail">
+                            <img src="@Url.Content(item.PhotoPath)" />
+                        </div>
+                    </td>*@
                     <td>@item.MenuName</td>
                     <td>@item.MenuDetail</td>
                     <td>@item.Price TL</td>
                 </tr>
             }
-
         }
     </tbody>
 </table>
 
+<br />
+<hr />
+<div id="menuEkle" class="btn btn-primary">Menü Ekle</div>
+<br />
+<br />
+<div id="menuEklemeFormu" class="col-md-5" style="display:none">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3>Yeni Menü Ekle</h3>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("AddBranch", "Company", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Menü Adını Giriniz." required />
+                </div>
+                <div class="form-group">
+                    <textarea required class="form-control" style="resize:none" name="detail" placeholder="Menü İçeriğini Giriniz."></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" required name="price" class="form-control" placeholder="Fiyatı giriniz." />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Yeni Menü Ekle" class="btn btn-success form-control" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section scriptsCompany{
+    <script>
+        $(document).ready(function () {
+            $("#menuEkle").click(function () {
+                $("#menuEklemeFormu").slideToggle("slow");
+            });
+        })
+    </script>
+}

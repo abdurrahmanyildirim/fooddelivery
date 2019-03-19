@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.DAL.Abstract
 {
-    public interface IMenuDal : IRepository<Menu>
+    public interface IReviewDal : IRepository<Review>
     {
-        ICollection<Menu> GetMenusByName(string menu);
-        ICollection<Menu> GetMenusByCompanyID(int id);
-        ICollection<Menu> GetMenusByCompanyCookie(string cookie);
+        ICollection<Review> GetReviewsByMenu(int id);
     }
 }

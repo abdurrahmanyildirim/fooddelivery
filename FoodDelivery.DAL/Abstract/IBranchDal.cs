@@ -8,10 +8,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.DAL.Abstract
 {
-    public interface IMenuDal : IRepository<Menu>
+    public interface IBranchDal : IRepository<Branch>
     {
-        ICollection<Menu> GetMenusByName(string menu);
-        ICollection<Menu> GetMenusByCompanyID(int id);
-        ICollection<Menu> GetMenusByCompanyCookie(string cookie);
     }
 }

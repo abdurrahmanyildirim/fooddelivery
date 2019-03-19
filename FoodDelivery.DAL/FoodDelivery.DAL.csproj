@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAddressDal.cs" />
+    <Compile Include="Abstract\IBranchDal.cs" />
     <Compile Include="Abstract\ICompanyDal.cs" />
     <Compile Include="Abstract\ICompanyApplyDal.cs" />
     <Compile Include="Abstract\IContactDal.cs" />
@@ -61,8 +62,10 @@
     <Compile Include="Abstract\IOrderDetailDal.cs" />
     <Compile Include="Abstract\IRegionDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IReviewDal.cs" />
     <Compile Include="Abstract\IUserDal.cs" />
     <Compile Include="Concrete\AddressDal.cs" />
+    <Compile Include="Concrete\BranchDal.cs" />
     <Compile Include="Concrete\CompanyApplyDal.cs" />
     <Compile Include="Concrete\CompanyDal.cs" />
     <Compile Include="Concrete\ContactDal.cs" />
@@ -74,6 +77,7 @@
     <Compile Include="Concrete\OrderDal.cs" />
     <Compile Include="Concrete\OrderDetailDal.cs" />
     <Compile Include="Concrete\RegionDal.cs" />
+    <Compile Include="Concrete\ReviewDal.cs" />
     <Compile Include="Concrete\UserDal.cs" />
     <Compile Include="Concrete\Mapping\BranchMapping.cs" />
     <Compile Include="Concrete\Mapping\CityMapping.cs" />

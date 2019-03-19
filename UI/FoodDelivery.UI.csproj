@@ -161,8 +161,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ShoppingController.cs" />
+    <Compile Include="DTOs\BranchRegionsDto.cs" />
     <Compile Include="DTOs\ConfirmOrderDto.cs" />
     <Compile Include="DTOs\MenuInfoDto.cs" />
+    <Compile Include="DTOs\MenuPointDto.cs" />
     <Compile Include="DTOs\UserLoginDto.cs" />
     <Compile Include="DTOs\UserRegisterDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -199,6 +201,7 @@
     <Content Include="Views\Login\_LoginCart.cshtml" />
     <Content Include="Views\Profile\Order.cshtml" />
     <Content Include="Views\Profile\Address.cshtml" />
+    <Content Include="Views\Company\CompanyLogin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

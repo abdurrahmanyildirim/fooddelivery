@@ -10,5 +10,7 @@ namespace FoodDelivery.DAL.Abstract
 {
     public interface ICompanyDal : IRepository<Company>
     {
+        Company GetCompanyByLogin(string email, string password);
+        Company GetCompanyByCookie(string cookie);
     }
 }

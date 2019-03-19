@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FoodDelivery.Entities.Concrete.Branch>
+﻿@model UI.DTOs.BranchRegionsDto
 @{
     ViewBag.Title = "Branches";
     Layout = "~/Views/Shared/_CompanyLayoutPage.cshtml";
@@ -13,18 +13,83 @@
         </tr>
     </thead>
     <tbody>
-        @{ 
-            foreach (var item in Model)
+        @{
+
+
+            foreach (var item in Model.Branches)
             {
                 <tr>
-                    <td>@item.Region.City</td>
+                    <td>@item.Region.RegionName</td>
                     <td>@item.Address</td>
                     <td>@item.Phone</td>
+                    <td>
+                        @using (Html.BeginForm("ChangeIsActive", "Company", FormMethod.Post))
+                        {
+                            <input type="hidden" name="id" value="@item.ID" />
+                            if (item.IsActive)
+                            {
+                                <input type="submit" value="Şubeyi Kapat" class="btn btn-danger" />
+                            }
+                            else
+                            {
+                                <input type="submit" value="Şubeyi Aç" class="btn btn-success" />
+                            }
+                        }
+                    </td>
                 </tr>
             }
         }
     </tbody>
 </table>
 <br />
-<div class="right">@Html.ActionLink("+ Şube Ekle","AddBranch","Company", new {@class="btn btn-primary" }) </div>
+<hr />
+<div id="bolgeEkle" class="btn btn-primary">Şube Ekle</div>
+<br />
+<br />
+
+<div id="bolgeEklemeFormu" class="col-md-5" style="display:none">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3>Yeni Şube Ekle</h3>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("AddBranch", "Company", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <select name="region" class="form-control">
+                        @{
+                            foreach (var item in Model.Regions)
+                            {
+                                <option value="@item.ID">@item.RegionName</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea required class="form-control" style="resize:none" name="adres" placeholder="Adres"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" required name="phone" class="form-control" placeholder="Telefon" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Yeni Şube Ekle" class="btn btn-success form-control" />
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+@section scriptsCompany{
+    <script>
+        $(document).ready(function () {
+            $("#bolgeEkle").click(function () {
+                $("#bolgeEklemeFormu").slideToggle("slow");
+            });
+        })
+    </script>
+}
+
+
+
 

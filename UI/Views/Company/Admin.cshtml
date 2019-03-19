@@ -4,6 +4,26 @@
     Layout = "~/Views/Shared/_CompanyLayoutPage.cshtml";
 }
 
-<table class="table table-hover">
-    
-</table>
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-5 login-form-1">
+            @using (Html.BeginForm("CompanyLogin", "Company", FormMethod.Post))
+            {
+                <h3>Şirket Giriş</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Email *" name="email" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Your Password *" name="password" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Login" />
+                </div>
+                <div class="form-group">
+                    <a href="#" class="ForgetPwd">Forget Password?</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

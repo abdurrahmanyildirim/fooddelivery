@@ -312,3 +312,4 @@ $("#sepetiOnayla").click(function () {
         $.notify("Siparişi tamamlamak için giriş yapınız!", { className: 'danger', position: 'bottom right' });
     }
 });
+
