@@ -6,8 +6,14 @@
         <h4>@Model.CompanyName</h4>
     </div>
     <div class="panel-body">
-        <div class="thumbnail">
-            @*<img src="@Url.Content(Model.PhotoPath)" alt="@Model.CompanyName" />*@
+        <div class="form-group">
+            <h4>@Model.Email</h4>
+        </div>
+        <div class="form-group">
+            <h4>@Model.Password</h4>
+        </div>
+        <div class="form-group">
+            @Html.ActionLink("Çıkış Yap","Logout",null,new { @class="btn btn-danger form-control"})
         </div>
     </div>
 </div>

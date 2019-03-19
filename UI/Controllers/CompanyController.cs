@@ -18,6 +18,7 @@ namespace UI.Controllers
         IReviewDal _reviewDal;
         IBranchDal _branchDal;
         IRegionDal _regionDal;
+        ICompanyApplyDal _companyApplyDal;
 
         public CompanyController()
         {
@@ -26,6 +27,7 @@ namespace UI.Controllers
             _menuDal = InstanceFactory.GetInstance<IMenuDal>();
             _reviewDal = InstanceFactory.GetInstance<IReviewDal>();
             _branchDal = InstanceFactory.GetInstance<IBranchDal>();
+            _companyApplyDal = InstanceFactory.GetInstance<ICompanyApplyDal>();
         }
 
         public ActionResult Admin()
@@ -37,6 +39,29 @@ namespace UI.Controllers
                 return View("CompanyLogin", menuPointDtos);
             }
             return View();
+        }
+
+        public ActionResult AddCompanyApply(FormCollection frm)
+        {
+            CompanyApply companyApply = new CompanyApply()
+            {
+                CompanyName = frm["name"],
+                Description = frm["detail"],
+                EmailAddress = frm["email"],
+                Password = frm["password"],
+                IsActive = true
+            };
+            _companyApplyDal.Add(companyApply);
+
+            return RedirectToAction("Admin");
+        }
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            HttpCookie myCookie = new HttpCookie("company");
+            myCookie.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(myCookie);
+            return RedirectToAction("Admin");
         }
 
         public PartialViewResult _companyPartial()
@@ -152,9 +177,20 @@ namespace UI.Controllers
             string cookie = Request.Cookies["company"].Value;
             return View(_menuDal.GetMenusByCompanyCookie(cookie));
         }
-        //TODO: Burada Menü ekleme işlemi yapılacak
-        public ActionResult AddMenu()
+
+        [HttpPost]
+        public ActionResult AddMenu(FormCollection form)
         {
+            string cookie = Request.Cookies["company"].Value;
+            Menu menu = new Menu()
+            {
+                CompanyID = _companyDal.GetCompanyByCookie(cookie).ID,
+                MenuName = form["name"],
+                MenuDetail = form["detail"],
+                Price = Convert.ToDecimal(form["price"])
+            };
+
+            _menuDal.Add(menu);
             return RedirectToAction("Menus");
         }
     }
