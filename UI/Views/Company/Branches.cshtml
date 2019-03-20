@@ -63,10 +63,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea required class="form-control" style="resize:none" name="adres" placeholder="Adres"></textarea>
+                    <textarea required id="branchAddress" class="form-control" style="resize:none" name="adres" placeholder="Adres"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" required name="phone" class="form-control" placeholder="Telefon" />
+                    <input type="text" id="branchPhone" required name="phone" class="form-control" placeholder="Telefon" />
                 </div>
                 <div class="form-group">
                     <input type="submit" id="subeEkle" value="Yeni Şube Ekle" class="btn btn-success form-control" />
@@ -83,7 +83,12 @@
                 $("#bolgeEklemeFormu").slideToggle("slow");
             });
             $("#subeEkle").click(function () {
-                $.notify("Yeni şube eklendi.", { className: 'success', position: 'bottom right' })
+                $("#addMenu").click(function () {
+                    if ($("#branchAddress").val() != null && $("#branchPhone").val() != null) {
+                        $.notify("Yeni şube eklendi.", { className: 'success', position: 'bottom right' })
+                    }
+                });
+
             })
         })
     </script>

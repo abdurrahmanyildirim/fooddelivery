@@ -19,7 +19,7 @@
                 <tr>
                     <td>@item.MenuName</td>
                     <td>@item.MenuDetail</td>
-                    <td>@string.Format( "{0:C2}", item.Price)</td>
+                    <td>@string.Format("{0:C2}", item.Price)</td>
                 </tr>
             }
         }
@@ -39,13 +39,13 @@
             @using (Html.BeginForm("AddMenu", "Company", FormMethod.Post))
             {
                 <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Menü Adını Giriniz." required />
+                    <input type="text" id="menuNameC" name="name" class="form-control" placeholder="Menü Adını Giriniz." required />
                 </div>
                 <div class="form-group">
-                    <textarea required class="form-control" style="resize:none" name="detail" placeholder="Menü İçeriğini Giriniz."></textarea>
+                    <textarea required id="menuDetailC" class="form-control" style="resize:none" name="detail" placeholder="Menü İçeriğini Giriniz."></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" required name="price" class="form-control" placeholder="Fiyatı giriniz." />
+                    <input type="text" id="menuPriceC" required name="price" class="form-control" placeholder="Fiyatı giriniz." />
                 </div>
                 <div class="form-group">
                     <input type="submit" id="addMenu" value="Yeni Menü Ekle" class="btn btn-success form-control" />
@@ -62,9 +62,10 @@
             });
 
             $("#addMenu").click(function () {
-                $.notify("Yeni menü eklendi.", { className: 'success', position: 'top right' })
-
-            })
+                if ($("#menuNameC").val() != null && $("#menuDetailC").val() != null && $("#menuPriceC").val() != null) {
+                    $.notify("Yeni menü eklendi.", { className: 'success', position: 'top right' })
+                }
+            });
         });
     </script>
 }
