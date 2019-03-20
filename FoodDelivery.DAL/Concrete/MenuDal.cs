@@ -26,5 +26,10 @@ namespace FoodDelivery.DAL.Concrete
         {
             return GetEntitiesByFilter(x => x.Company.Cookie == cookie).ToList();
         }
+
+        public ICollection<Menu> GetMenusByNameOrCompany(string content)
+        {
+            return GetEntitiesByFilter(x => x.MenuName.ToLower().Contains(content.ToLower()) || x.MenuDetail.ToLower().Contains(content.ToLower()) || x.Company.CompanyName.ToLower().Contains(content.ToLower())).ToList();
+        }
     }
 }

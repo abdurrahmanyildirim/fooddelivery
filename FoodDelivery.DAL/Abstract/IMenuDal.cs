@@ -13,5 +13,6 @@ namespace FoodDelivery.DAL.Abstract
         ICollection<Menu> GetMenusByName(string menu);
         ICollection<Menu> GetMenusByCompanyID(int id);
         ICollection<Menu> GetMenusByCompanyCookie(string cookie);
+        ICollection<Menu> GetMenusByNameOrCompany(string content);
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FoodDelivery.Entities.Concrete.Menu>
+﻿@model IEnumerable<UI.DTOs.MenuPointDto>
 @{
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
@@ -16,7 +16,7 @@
                     <thead>
                         <tr>
                             <th>Menü Adı</th>
-                            <th>Açıklaması</th>
+                            <th>Puanı</th>
                             <th>Fiyatı</th>
                             <th>Şirket</th>
                             <th style="text-align:center">Sepet Ekle</th>
@@ -27,14 +27,29 @@
                             foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>@item.MenuName</td>
-                                    <td>@item.MenuDetail</td>
-                                    <td>@string.Format("{0:C2}", item.Price)</td>
-                                    <td>@item.Company.CompanyName</td>
+                                    <td>@item.Menu.MenuName</td>
+                                    <td>@{ if (item.Point == 0)
+                                        { <span class="text-center">Yorum yapılmadı.</span> }
+                                        else
+                                        {
+                                            for (int i = 0; i < item.Point; i++)
+                                            {
+                                                <span class="glyphicon glyphicon-star"></span>
+                                            }
+                                            if (item.Point != 5)
+                                            {
+                                                for (int i = 0; i < 5 - item.Point; i++)
+                                                {
+                                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                                }
+                                            }
+                                        } }</td>
+                                    <td>@string.Format("{0:C2}", item.Menu.Price)</td>
+                                    <td>@item.Menu.Company.CompanyName</td>
                                     <td style="text-align:center;font-size:15pt;">
-                                        <input type="hidden" id="companyID" value="@item.CompanyID" data-id="@item.ID"  />
-                                        <input type="number" value="1" min="1" max="20" id="menuSayisi" data-id="@item.ID" />
-                                        <a href="#" class="btn btn-default" id="sepeteEkle" data-id="@item.ID">
+                                        <input type="hidden" id="companyID" value="@item.Menu.CompanyID" data-id="@item.Menu.ID"  />
+                                        <input type="number" value="1" min="1" max="20" id="menuSayisi" data-id="@item.Menu.ID" />
+                                        <a href="#" class="btn btn-default" id="sepeteEkle" data-id="@item.Menu.ID">
                                             <span class="glyphicon glyphicon-plus" style="color:green">
                                             </span>
                                         </a>

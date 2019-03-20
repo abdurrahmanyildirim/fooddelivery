@@ -40,7 +40,7 @@
             @using (Html.BeginForm("AddCompanyApply", "Company", FormMethod.Post))
             {
                 <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Company Adını Giriniz." required />
+                    <input type="text" name="name" class="form-control" placeholder="Şirket Adını Giriniz." required />
                 </div>
                 <div class="form-group">
                     <textarea required class="form-control" style="resize:none" name="detail" placeholder="Başvuru Açıklaması Giriniz."></textarea>
@@ -49,7 +49,7 @@
                     <input type="email" required name="email" class="form-control" placeholder="Mail Adresi Giriniz." />
                 </div>
                 <div class="form-group">
-                    <input type="password" required name="price" class="form-control" placeholder="Şifrenizi Giriniz." />
+                    <input type="password" required name="password" class="form-control" placeholder="Şifrenizi Giriniz." />
                 </div>
                 <div class="form-group">
                     <input id="tamamla" type="submit" value="Başvuruyu Tamamla" class="btn btn-success form-control" />

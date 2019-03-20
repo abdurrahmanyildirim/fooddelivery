@@ -313,3 +313,13 @@ $("#sepetiOnayla").click(function () {
     }
 });
 
+$("#sepeteGitBtn").click(function () {
+    var user = Cookies.get("user");
+    if (user != null) {
+        window.location.href = "/Shopping/Cart";
+    } else {
+        $.notify("Sepete gitmek için giriş yapmalısınız!", { className: 'danger', position: 'bottom right' });
+        $("#email").focus();
+    }
+})
+

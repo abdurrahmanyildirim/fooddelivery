@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UI.DTOs;
 
 namespace UI.Controllers
 {
@@ -17,6 +18,7 @@ namespace UI.Controllers
         private IUserDal _userDal;
         private IOrderDal _orderDal;
         private IAddressDal _addressDal;
+        private IReviewDal _reviewDal;
 
         public ShoppingController()
         {
@@ -25,6 +27,7 @@ namespace UI.Controllers
             _userDal = InstanceFactory.GetInstance<IUserDal>();
             _orderDal = InstanceFactory.GetInstance<IOrderDal>();
             _addressDal = InstanceFactory.GetInstance<IAddressDal>();
+            _reviewDal = InstanceFactory.GetInstance<IReviewDal>();
         }
 
         public ActionResult Cart()
@@ -39,63 +42,35 @@ namespace UI.Controllers
         [HttpGet]
         public ActionResult Search(string menu)
         {
-            return View(_menuDal.GetMenusByName(menu));
+            ICollection<MenuPointDto> menum = PuanliMenuler(_menuDal.GetMenusByNameOrCompany(menu));
+            return View(menum);
         }
 
-        // Shopping/AddToCart
-        public PartialViewResult AddToCart(int id)
+        private List<MenuPointDto> PuanliMenuler(ICollection<Menu> menu)
         {
-            string cookie = Request.Cookies["user"].Value;
-            Menu menu = _menuDal.GetByID(id);
-            User user = _userDal.GetUserByCookie(cookie);
-
-            if (_orderDal.GetActiveOrderByUser(user.ID) == null)
+            List<MenuPointDto> menus = new List<MenuPointDto>();
+            foreach (Menu item in menu)
             {
-                Order order = new Order()
+                int puan = 0;
+                ICollection<Review> reviews = _reviewDal.GetReviewsByMenu(item.ID);
+                if(reviews.Count() > 0)
                 {
-                    AddressID = user.Addresses.FirstOrDefault(x => x.ID == x.User.ID).ID,
-                    TotalPrice = menu.Price,
-                    IsActive = true,
-                    OrderDate = DateTime.Now,
-                    BranchID = 1,//TODO:Dinamik hale getirilecek.
-                    PaymentType = true,//TODO:Default olarak true değeri verilecek. Son satın alma esnasında set edilecek
-                };
-                _orderDal.Add(order);
-            }
-            else
-            {
-                Order order = _orderDal.GetActiveOrderByUser(user.ID);
-                order.TotalPrice += menu.Price;
-                order.OrderDate = DateTime.Now;
-                _orderDal.Update(order);
-            }
+                    foreach (Review review in reviews)
+                    {
+                        puan += review.Point;
+                    }
+                    puan = puan / reviews.Count();
+                }
 
-            int orderID = _orderDal.GetActiveOrderByUser(user.ID).ID;
-
-            if (_orderDetailDal.GetCartByMenuUserOrder(menu.ID, user.ID, orderID) == null)
-            {
-                OrderDetail orderDetail = new OrderDetail()
+                MenuPointDto midto = new MenuPointDto()
                 {
-                    IsCompleted = false,
-                    MenuID = menu.ID,
-                    OrderID = orderID,
-                    Quantity = 1, //TODO:Dinamik hale getirilebilir.
-                    TotalAmount = menu.Price
+                    Menu = item,
+                    Point = puan
                 };
-                _orderDetailDal.Add(orderDetail);
+                menus.Add(midto);
             }
-            else
-            {
-                OrderDetail orderDetail = _orderDetailDal.GetCartByMenuUserOrder(menu.ID, user.ID, orderID);
-                orderDetail.Quantity++;
-                orderDetail.TotalAmount = orderDetail.Quantity * menu.Price;
-                _orderDetailDal.Update(orderDetail);
-            }
-            
-
-            return PartialView("~/Views/Login/_LoginCart.cshtml", _orderDetailDal.GetCartsByCookie(cookie));
+            return menus;
         }
-
 
     }
 }

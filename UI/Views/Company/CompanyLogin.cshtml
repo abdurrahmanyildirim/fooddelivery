@@ -19,9 +19,9 @@
             foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.MenuName</td>
-                    <td>@item.Detail</td>
-                    <td>@string.Format("{0:C2}", item.Price)</td>
+                    <td>@item.Menu.MenuName</td>
+                    <td>@item.Menu.MenuDetail</td>
+                    <td>@string.Format("{0:C2}", item.Menu.Price)</td>
                     <td>@item.Point</td>
                 </tr>
             }

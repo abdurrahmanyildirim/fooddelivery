@@ -114,10 +114,8 @@ namespace UI.Controllers
 
                 MenuPointDto menuPointDto = new MenuPointDto()
                 {
-                    Detail = item.MenuDetail,
-                    Point = puan,
-                    MenuName = item.MenuName,
-                    Price = item.Price
+                    Menu = item,
+                    Point = puan
                 };
                 menu.Add(menuPointDto);
             }

@@ -22,11 +22,16 @@
                 </a>
             </div>
             <div class="collapse navbar-collapse navbar-right" id="navbar">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Ana Sayfa", "Admin", "Company")</li>
-                    <li>@Html.ActionLink("Menüler", "Menus", "Company")</li>
-                    <li>@Html.ActionLink("Şubeler", "Branches", "Company")</li>
-                </ul>
+                @{
+                    if (Request.Cookies["company"] != null)
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Ana Sayfa", "Admin", "Company")</li>
+                            <li>@Html.ActionLink("Menüler", "Menus", "Company")</li>
+                            <li>@Html.ActionLink("Şubeler", "Branches", "Company")</li>
+                        </ul>
+                    }
+                }
             </div>
         </div>
     </nav>
@@ -40,7 +45,7 @@
                         Html.RenderAction("_companyPartial", "Company");
                     }
                 </div>
-            }
+                        }
             <div class="col-md-9">
                 <div class="panel panel-default">
                     <div class="panel-body">
