@@ -5,69 +5,81 @@
 }
 
 <div class="container login-container">
+
     <div class="row">
-        <div class="col-md-3 login-form-1">
-            @using (Html.BeginForm("CompanyLogin", "Company", FormMethod.Post))
-            {
-                <h3>Şirket Giriş</h3>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email" name="email" />
+
+        <div class="col-md-3 col-md-offset-4 ">
+            <button class="btn btn-primary pull-left" id="companyLogin">Giriş Formu</button>
+            <button class="btn btn-primary pull-right" id="companyApply">Başvuru Formu</button>
+            <br />
+            <hr />
+
+            <div id="loginForm">
+                @using (Html.BeginForm("CompanyLogin", "Company", FormMethod.Post))
+                {
+                    <h4>Şirket Giriş</h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email" name="email" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" name="password" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success pull-right" value="Giriş Yap" />
+                    </div>
+                    <span style="color:red">
+                        @TempData["Mesaj"]
+                    </span>
+                }
+            </div>
+            <div id="companyBasvuruFormu" style="display:none">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4>Başvuru Formu</h4>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("AddCompanyApply", "Company", FormMethod.Post))
+                        {
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" placeholder="Company Adını Giriniz." required />
+                            </div>
+                            <div class="form-group">
+                                <textarea required class="form-control" style="resize:none" name="detail" placeholder="Başvuru Açıklaması Giriniz."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" required name="email" class="form-control" placeholder="Mail Adresi Giriniz." />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" required name="price" class="form-control" placeholder="Şifrenizi Giriniz." />
+                            </div>
+                            <div class="form-group">
+                                <input id="tamamla" type="submit" value="Başvuruyu Tamamla" class="btn btn-success form-control" />
+                            </div>
+                        }
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" name="password" />
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Giriş Yap" />
-                </div>
-            }
-        </div>
-        <div class="col-md-4" id="bildiri" style="display:none">
-            <span class="glyphicon glyphicon-ok-circle"></span>
-            <h3>Başvuru talebiniz alınmıştır. En kısa sürede size dönüş yapılacaktır.</h3>
+            </div>
+
         </div>
     </div>
 </div>
-<hr />
-<button class="btn btn-primary" id="companyApply">Üyelik Başvurusu Yap</button>
-<br />
-<br />
-<div id="companyBasvuruFormu" class="col-md-7" style="display:none">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3>Başvuru Formu</h3>
-        </div>
-        <div class="panel-body">
-            @using (Html.BeginForm("AddCompanyApply", "Company", FormMethod.Post))
-            {
-                <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Şirket Adını Giriniz." required />
-                </div>
-                <div class="form-group">
-                    <textarea required class="form-control" style="resize:none" name="detail" placeholder="Başvuru Açıklaması Giriniz."></textarea>
-                </div>
-                <div class="form-group">
-                    <input type="email" required name="email" class="form-control" placeholder="Mail Adresi Giriniz." />
-                </div>
-                <div class="form-group">
-                    <input type="password" required name="password" class="form-control" placeholder="Şifrenizi Giriniz." />
-                </div>
-                <div class="form-group">
-                    <input id="tamamla" type="submit" value="Başvuruyu Tamamla" class="btn btn-success form-control" />
-                </div>
-            }
-        </div>
-    </div>
-</div>
+
 
 @section scriptsCompany{
     <script>
         $(document).ready(function () {
             $("#companyApply").click(function () {
-                $("#companyBasvuruFormu").slideToggle("slow");
+                $("#loginForm").hide(1000);
+                $("#companyBasvuruFormu").show(1000);
             });
             $('#tamamla').click(function () {
-                alert(confirm("Başvuru talebiniz alınmıştır. En kısa sürede size dönüş yapılacaktır."))
+                $.notify("Başvuru talebiniz alınmıştır. En kısa sürede size dönüş yapılacaktır.", { className: 'success', position: 'top right' });
             });
+            $("#companyLogin").click(function () {
+                $("#companyBasvuruFormu").hide(1000);
+                $("#loginForm").show(1000);
+            })
         })
     </script>
 }

@@ -22,7 +22,24 @@
                     <td>@item.Menu.MenuName</td>
                     <td>@item.Menu.MenuDetail</td>
                     <td>@string.Format("{0:C2}", item.Menu.Price)</td>
-                    <td>@item.Point</td>
+                    <td>
+                        @{ if (item.Point == 0)
+                            { <span class="text-center">Yorum yapılmadı.</span> }
+                            else
+                            {
+                                for (int i = 0; i < item.Point; i++)
+                                {
+                                    <span class="glyphicon glyphicon-star"></span>
+                                }
+                                if (item.Point != 5)
+                                {
+                                    for (int i = 0; i < 5 - item.Point; i++)
+                                    {
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                    }
+                                }
+                            } }
+                    </td>
                 </tr>
             }
         }

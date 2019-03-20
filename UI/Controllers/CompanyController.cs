@@ -55,13 +55,13 @@ namespace UI.Controllers
 
             return RedirectToAction("Admin");
         }
-        [HttpPost]
+
         public ActionResult Logout()
         {
             HttpCookie myCookie = new HttpCookie("company");
             myCookie.Expires = DateTime.Now.AddYears(-1);
             Response.Cookies.Add(myCookie);
-            return RedirectToAction("Admin");
+            return RedirectToAction("Admin", "Company");
         }
 
         public PartialViewResult _companyPartial()
@@ -92,6 +92,7 @@ namespace UI.Controllers
             }
             else
             {
+                TempData["Mesaj"] = "Hatalı Şifre veya Email girişi yapıldı.";
                 return RedirectToAction("Admin", "Company");
             }
         }

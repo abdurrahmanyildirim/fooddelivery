@@ -7,7 +7,6 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            @*<th>Temsili Resim</th>*@
             <th>İsim</th>
             <th>Açıklama</th>
             <th>Fiyat</th>
@@ -18,21 +17,15 @@
             foreach (var item in Model)
             {
                 <tr>
-                    @*<td>
-                        <div class="thumbnail">
-                            <img src="@Url.Content(item.PhotoPath)" />
-                        </div>
-                    </td>*@
                     <td>@item.MenuName</td>
                     <td>@item.MenuDetail</td>
-                    <td>@item.Price TL</td>
+                    <td>@string.Format( "{0:C2}", item.Price)</td>
                 </tr>
             }
         }
     </tbody>
 </table>
 
-<br />
 <hr />
 <div id="menuEkle" class="btn btn-primary">Menü Ekle</div>
 <br />
@@ -40,7 +33,7 @@
 <div id="menuEklemeFormu" class="col-md-6" style="display:none">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3>Yeni Menü Ekle</h3>
+            <h4>Yeni Menü Ekle</h4>
         </div>
         <div class="panel-body">
             @using (Html.BeginForm("AddMenu", "Company", FormMethod.Post))
@@ -55,7 +48,7 @@
                     <input type="text" required name="price" class="form-control" placeholder="Fiyatı giriniz." />
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Yeni Menü Ekle" class="btn btn-success form-control" />
+                    <input type="submit" id="addMenu" value="Yeni Menü Ekle" class="btn btn-success form-control" />
                 </div>
             }
         </div>
@@ -67,6 +60,11 @@
             $("#menuEkle").click(function () {
                 $("#menuEklemeFormu").slideToggle("slow");
             });
-        })
+
+            $("#addMenu").click(function () {
+                $.notify("Yeni menü eklendi.", { className: 'success', position: 'top right' })
+
+            })
+        });
     </script>
 }

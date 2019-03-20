@@ -14,8 +14,6 @@
     </thead>
     <tbody>
         @{
-
-
             foreach (var item in Model.Branches)
             {
                 <tr>
@@ -41,7 +39,6 @@
         }
     </tbody>
 </table>
-<br />
 <hr />
 <div id="bolgeEkle" class="btn btn-primary">Şube Ekle</div>
 <br />
@@ -50,7 +47,7 @@
 <div id="bolgeEklemeFormu" class="col-md-6" style="display:none">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3>Yeni Şube Ekle</h3>
+            <h4>Yeni Şube Ekle</h4>
         </div>
         <div class="panel-body">
             @using (Html.BeginForm("AddBranch", "Company", FormMethod.Post))
@@ -72,9 +69,8 @@
                     <input type="text" required name="phone" class="form-control" placeholder="Telefon" />
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Yeni Şube Ekle" class="btn btn-success form-control" />
+                    <input type="submit" id="subeEkle" value="Yeni Şube Ekle" class="btn btn-success form-control" />
                 </div>
-
             }
         </div>
     </div>
@@ -86,6 +82,9 @@
             $("#bolgeEkle").click(function () {
                 $("#bolgeEklemeFormu").slideToggle("slow");
             });
+            $("#subeEkle").click(function () {
+                $.notify("Yeni şube eklendi.", { className: 'success', position: 'bottom right' })
+            })
         })
     </script>
 }
