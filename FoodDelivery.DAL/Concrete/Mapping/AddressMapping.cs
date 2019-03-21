@@ -17,7 +17,6 @@ namespace FoodDelivery.DAL.Concrete.Mapping
 
             HasRequired(x => x.User).WithMany(x => x.Addresses).HasForeignKey(x => x.UserID);
             HasRequired(x => x.Region).WithMany(x => x.Addresses).HasForeignKey(x => x.RegionID);
-
         }
     }
 }

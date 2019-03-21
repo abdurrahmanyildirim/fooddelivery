@@ -15,6 +15,7 @@ namespace FoodDelivery.Entities.Concrete
         public int Quantity { get; set; }
         public bool IsCompleted { get; set; }
         public decimal TotalAmount { get; set; }
+        public int? Pointed { get; set; }
 
         public virtual Menu Menu { get; set; }
         public virtual Order Order { get; set; }

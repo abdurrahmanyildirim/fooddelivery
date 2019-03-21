@@ -13,7 +13,6 @@ namespace FoodDelivery.DAL.Concrete.Mapping
         public CompanyMapping()
         {
             HasKey(x => x.ID);
-
         }
     }
 }

@@ -20,9 +20,16 @@ namespace UI.Controllers
             _companyApplyDal = InstanceFactory.GetInstance<ICompanyApplyDal>();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View(_companyApplyDal.GetAll());
+            if (id != null && id == 1453)
+            {
+                return View(_companyApplyDal.GetAll());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public ActionResult Add(int id)

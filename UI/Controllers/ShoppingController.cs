@@ -32,10 +32,12 @@ namespace UI.Controllers
 
         public ActionResult Cart()
         {
-            if (Request.Cookies["user"] == null)
-                return RedirectToAction("Error404", "Error");
-
-            string cookie = Request.Cookies["user"].Value;
+            string cookie = "";
+            
+            if(Request.Cookies["user"] != null)
+            {
+                cookie = Request.Cookies["user"].Value;
+            }
             return View(_addressDal.GetAddressByUserID(_userDal.GetUserByCookie(cookie).ID));
         }
 

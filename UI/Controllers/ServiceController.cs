@@ -19,12 +19,18 @@ namespace UI.Controllers
         IMenuDal _menuDal;
         IOrderDal _orderDal;
         IOrderDetailDal _orderDetailDal;
+        IReviewDal _reviewDal;
+        IAddressDal _addressDal;
+        IBranchDal _branchDal;
         public ServiceController()
         {
             _userDal = InstanceFactory.GetInstance<IUserDal>();
             _menuDal = InstanceFactory.GetInstance<IMenuDal>();
             _orderDal = InstanceFactory.GetInstance<IOrderDal>();
             _orderDetailDal = InstanceFactory.GetInstance<IOrderDetailDal>();
+            _reviewDal = InstanceFactory.GetInstance<IReviewDal>();
+            _addressDal = InstanceFactory.GetInstance<IAddressDal>();
+            _branchDal = InstanceFactory.GetInstance<IBranchDal>();
         }
 
         //Adres:  api/Service/Login
@@ -123,7 +129,10 @@ namespace UI.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "User Bulunamadı!");
 
             List<List<int>> sepetArray = JsonConvert.DeserializeObject<List<List<int>>>(codto.OrderArray);
-            int addressID = codto.AddressID;
+                int addressID = codto.AddressID;
+            int regionID = _addressDal.Get(x => x.ID == addressID).RegionID;
+            int companyID = sepetArray[0][2];
+            int branchID = _branchDal.Get(x => x.CompanyID == companyID && x.RegionID == regionID).ID;
             bool paymentType = codto.PaymentType == 0;
             decimal totalPrice = 0;
             
@@ -135,7 +144,7 @@ namespace UI.Controllers
 
             Order o = new Order()
             {
-                BranchID = sepetArray[0][2],
+                BranchID = branchID,
                 AddressID = addressID,
                 IsActive = true,
                 OrderDate = DateTime.Now,
@@ -158,6 +167,29 @@ namespace UI.Controllers
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, "Başarılı");
+        }
+
+        [HttpPost]
+        public HttpResponseMessage AddPoint([FromBody]PointDto pointDto)
+        {
+            if(pointDto != null)
+            {
+                Review review = new Review()
+                {
+                    MenuID = pointDto.MenuID,
+                    Point = pointDto.Point
+                };
+                OrderDetail od = _orderDetailDal.GetByID(pointDto.OrderDetailID);
+                od.Pointed = pointDto.Point;
+                _orderDetailDal.Update(od);
+                _reviewDal.Add(review);
+                return Request.CreateResponse(HttpStatusCode.OK, "Başarılı");
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Başarısız");
+
+            }
         }
     }
 }

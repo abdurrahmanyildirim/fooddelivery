@@ -22,9 +22,5 @@ namespace FoodDelivery.Entities.Concrete
 
         public virtual Address Address { get; set; }
         public virtual List<OrderDetail> OrderDetails { get; set; }
-
-        //public virtual Review Review { get; set; }
-        //   public virtual Branch Branch { get; set; }
-
     }
 }

@@ -13,14 +13,6 @@ namespace FoodDelivery.DAL.Concrete
 {
     public class Context : DbContext
     {
-        //public Context() : base("server=.;database=FoodDeliveryDb;uid=sa;pwd=123")
-        //{
-
-        //}
-        //public Context() : base(@"server=ADEM\EXPRESS;database=FoodDeliveryDb;uid=sa;pwd=123")
-        //{
-        //}
-
         public Context() : base(@"server = (LocalDb)\MsSqlLocalDb; database = FoodDelivery2; Trusted_Connection=true") { }
 
         public DbSet<User> Users { get; set; }
@@ -32,7 +24,6 @@ namespace FoodDelivery.DAL.Concrete
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-       // public DbSet<BranchMenu> BranchMenus { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Manager> Managers { get; set; }
         public DbSet<CompanyApply> CompanyApplies { get; set; }
@@ -49,7 +40,6 @@ namespace FoodDelivery.DAL.Concrete
             modelBuilder.Configurations.Add(new MenuMapping());
             modelBuilder.Configurations.Add(new OrderMapping());
             modelBuilder.Configurations.Add(new OrderDetailMapping());
-          //  modelBuilder.Configurations.Add(new BranchMenuMapping());
             modelBuilder.Configurations.Add(new ReviewMapping());
 
             base.OnModelCreating(modelBuilder);

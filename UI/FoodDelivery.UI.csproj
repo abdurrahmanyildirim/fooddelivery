@@ -165,6 +165,7 @@
     <Compile Include="DTOs\ConfirmOrderDto.cs" />
     <Compile Include="DTOs\MenuInfoDto.cs" />
     <Compile Include="DTOs\MenuPointDto.cs" />
+    <Compile Include="DTOs\PointDto.cs" />
     <Compile Include="DTOs\UserLoginDto.cs" />
     <Compile Include="DTOs\UserRegisterDto.cs" />
     <Compile Include="Global.asax.cs">

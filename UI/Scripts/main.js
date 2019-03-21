@@ -27,7 +27,6 @@ $("#btnLogin").click(function (e) {
 $("#loginButton").click(function () {
     var email = $("#email").val();
     var pwd = $("#password").val();
-    //TODO: Bu değerler boş mu kontrol edilecek!
     $.ajax({
         method: "post",
         url: "/api/Service/Login",
@@ -54,7 +53,6 @@ $("#registerButton").click(function () {
     var name = $("#name").val();
     var surname = $("#surname").val();
     var phone = $("#phone").val();
-    //TODO: Bu değerler boş mu kontrol edilecek!
     $.ajax({
         method: "post",
         url: "/api/Service/Register",
@@ -138,15 +136,12 @@ function sepeteEkle() {
     }
 }
 
-function sepetiGuncelle(id, sonAdet) {
+function sepetiGuncelle(id) {
     for (var k in sepetArray) {
         if (sepetArray[k][0] == id) {
             var sepetUrunID = parseInt(id);
             var sepetAdedi = parseInt(sepetArray[k][1]);
-            //  var suankiMiktar = parseFloat($("span.menuFiyati[data-sepetUrunID='" + sepetUrunID + "'").html());
-            //   var birimFiyat = parseFloat(suankiMiktar / (sepetAdedi - sonAdet));
             $("span.menuAdedi[data-sepetUrunID='" + sepetUrunID + "'").html(sepetAdedi);
-            //  $("span .menuFiyati[data-sepetUrunID='" + sepetUrunID + "'").html((birimFiyat * sepetAdedi).toFixed(2));
             break;
         }
     }

@@ -19,6 +19,7 @@
                             <th>Miktar</th>
                             <th>Toplam Fiyat</th>
                             <th>Tarih</th>
+                            <th>Puanla</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,17 +31,60 @@
                                     <td>@od.Quantity</td>
                                     <td>@od.TotalAmount</td>
                                     <td>@od.Order.OrderDate</td>
+                                    <td id="puanAlani" data-id="@od.ID">
+                                        @{
+                                            if (od.Pointed == 0 || od.Pointed == null)
+                                            {
+                                                <select id="puanEkle" class="form-control" data-id="@od.MenuID" data-od="@od.ID">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            }
+                                            else
+                                            {
+                                                <p>@od.Pointed Puan verdiniz.</p>
+                                            }
+                                        }
+
+                                    </td>
                                 </tr>
                             }
                         }
                     </tbody>
                 </table>
-                            }
-                            else
-                            {
-                                <h3 class="text-center">Geçmiş siparişiniz bulunmamaktadır.</h3>
-                            }
+            }
+            else
+            {
+                <h3 class="text-center">Geçmiş siparişiniz bulunmamaktadır.</h3>
+            }
         }
 
     </div>
 </div>
+
+@section scripts{
+    <script>
+        $('select#puanEkle').on('change', function () {
+            var puan = this.value;
+            var menuID = $(this).data("id");
+            var orderDetailID = $(this).data("od");
+            $.ajax({
+                type: 'POST',
+                url: '/api/Service/AddPoint',
+                dataType: 'JSON',
+                data: {
+                    Point: puan,
+                    MenuID: menuID,
+                    OrderDetailID: orderDetailID
+                },
+                success: function () {
+                    $(this).hide();
+                    $("td#puanAlani[data-id='" + orderDetailID + "']").text(puan + " Puan verdiniz.");
+                }
+            });
+        })
+    </script>
+}

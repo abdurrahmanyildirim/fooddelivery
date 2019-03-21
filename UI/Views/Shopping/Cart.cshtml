@@ -31,6 +31,9 @@
                 <tbody id="anaSepettekiler"></tbody>
             </table>
             <hr />
+            @{ 
+                if (Model != null)
+                {
             <div class="row pull-left">
                 @{
                     if (adresVarMi)
@@ -46,20 +49,20 @@
                                 }
                             </select>
                         </div>
-                            <div class="col-md-6">
-                                <h4><b>Ödeme Tipi</b></h4>
-                                <select id="odemeTipi" class="form-control">
-                                    <option value="0">Nakit</option>
-                                    <option value="1">Kredi / Banka Kartı</option>
-                                </select>
-                            </div>
+                        <div class="col-md-6">
+                            <h4><b>Ödeme Tipi</b></h4>
+                            <select id="odemeTipi" class="form-control">
+                                <option value="0">Nakit</option>
+                                <option value="1">Kredi / Banka Kartı</option>
+                            </select>
+                        </div>
 
 
-                                    }
-                                    else
-                                    {
-                                        <span class="text-danger">Siparişi Tamamlamadan önce adres girmelisiniz!</span>
-                                    }
+                    }
+                    else
+                    {
+                        <span class="text-danger">Siparişi Tamamlamadan önce adres girmelisiniz!</span>
+                    }
                 }
 
             </div>
@@ -81,8 +84,12 @@
                     }
                 </div>
             </div>
-
-
+                        }
+                        else
+                        {
+                            <div class="text-center text-danger">Siparişinizi onaylamak için giriş yapmalısınız.</div> 
+                        }
+                  }
         </div>
     </div>
 </div>
