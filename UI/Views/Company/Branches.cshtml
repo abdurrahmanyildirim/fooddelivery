@@ -84,7 +84,7 @@
             });
             $("#subeEkle").click(function () {
                 $("#addMenu").click(function () {
-                    if ($("#branchAddress").val() != null && $("#branchPhone").val() != null) {
+                    if ($("#branchAddress").val() != "" && $("#branchPhone").val() != "") {
                         $.notify("Yeni şube eklendi.", { className: 'success', position: 'bottom right' })
                     }
                 });

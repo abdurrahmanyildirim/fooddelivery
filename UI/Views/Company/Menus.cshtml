@@ -62,7 +62,7 @@
             });
 
             $("#addMenu").click(function () {
-                if ($("#menuNameC").val() != null && $("#menuDetailC").val() != null && $("#menuPriceC").val() != null) {
+                if ($("#menuNameC").val() != "" && $("#menuDetailC").val() != "" && $("#menuPriceC").val() != "") {
                     $.notify("Yeni menü eklendi.", { className: 'success', position: 'top right' })
                 }
             });

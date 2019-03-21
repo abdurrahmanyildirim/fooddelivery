@@ -13,25 +13,32 @@
             <button class="btn btn-primary pull-right" id="companyApply">Başvuru Formu</button>
             <br />
             <hr />
-
             <div id="loginForm">
-                @using (Html.BeginForm("CompanyLogin", "Company", FormMethod.Post))
-                {
-                    <h4>Şirket Giriş</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Email" name="email" />
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4>Şirket Giriş</h4>
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" name="password" />
-                    </div>
+                    <div class="panel-body">
 
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-success pull-right" value="Giriş Yap" />
+                        @using (Html.BeginForm("CompanyLogin", "Company", FormMethod.Post))
+                        {
+                            <h4>Şirket Giriş</h4>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Email" name="email" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password" name="password" />
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success form-control" value="Giriş Yap" />
+                            </div>
+                            <span style="color:red">
+                                @TempData["Mesaj"]
+                            </span>
+                        }
                     </div>
-                    <span style="color:red">
-                        @TempData["Mesaj"]
-                    </span>
-                }
+                </div>
             </div>
             <div id="companyBasvuruFormu" style="display:none">
                 <div class="panel panel-primary">
@@ -70,18 +77,20 @@
     <script>
         $(document).ready(function () {
             $("#companyApply").click(function () {
-                $("#loginForm").hide(1000);
-                $("#companyBasvuruFormu").show(1000);
+                $("#loginForm").fadeOut(500);
+                $("#companyBasvuruFormu").delay(500).fadeIn(1000);
             });
+            
             $('#tamamla').click(function () {
-                if ($("#companyName").val() != null && $("#companyDetail").val() != null && $("#companyEmail").val() != null && $("#companyPassword").val() != null) {
+                if ($("#companyName").val() != "" && $("#companyDetail").val() != "" && $("#companyEmail").val() != "" && $("#companyPassword").val() != "") {
                     $.notify("Başvuru talebiniz alınmıştır. En kısa sürede size dönüş yapılacaktır.", { className: 'success', position: 'top right' });
                 }
             });
             $("#companyLogin").click(function () {
-                $("#companyBasvuruFormu").hide(1000);
-                $("#loginForm").show(1000);
+                $("#companyBasvuruFormu").fadeOut(500);
+                $("#loginForm").delay(500).fadeIn(1000);
             })
         })
+        
     </script>
 }

@@ -184,7 +184,6 @@
     <Content Include="Views\Company\Admin.cshtml" />
     <Content Include="Views\Company\Branches.cshtml" />
     <Content Include="Views\Company\Menus.cshtml" />
-    <Content Include="Views\Company\AddBranch.cshtml" />
     <Content Include="Views\Shared\_AdminLayoutPage.cshtml" />
     <Content Include="Views\Admin\Add.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
