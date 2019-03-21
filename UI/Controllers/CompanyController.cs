@@ -47,8 +47,8 @@ namespace UI.Controllers
             {
                 CompanyName = frm["name"],
                 Description = frm["detail"],
-                EmailAddress = frm["email"],
-                Password = frm["password"],
+                EmailAddress = frm["emailApply"],
+                Password = frm["sifre"],
                 IsActive = true
             };
             _companyApplyDal.Add(companyApply);
@@ -69,6 +69,7 @@ namespace UI.Controllers
             string cookie = Request.Cookies["company"].Value;
             return PartialView(_companyDal.GetCompanyByCookie(cookie));
         }
+
         [HttpPost]
         public ActionResult CompanyLogin(FormCollection frm)
         {
